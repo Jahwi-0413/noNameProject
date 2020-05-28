@@ -13,19 +13,26 @@ public class Lodgment implements Serializable    //숙박시설
     private String townShip;    //읍면동
     private String phoneNumber; //전화번호
 
-    Lodgment(int id, String name, String classification, String address, String city, String townShip, String PhoneNumber)
+    public Lodgment(int id, String name, String classification, String address, String city, String townShip, String PhoneNumber)
     {
         lodgmentId=id; lodgmentName = name;
         this.classification = classification;
         fullAddress=address; this.city = city; this.townShip = townShip;
         this.phoneNumber = PhoneNumber;
     }
-    Lodgment(int id, String name, String classification, String address, String city, String townShip)
+    public Lodgment(int id, String name, String classification, String address, String city, String townShip)
     {
         lodgmentId=id; lodgmentName = name;
         this.classification = classification;
         fullAddress=address; this.city = city; this.townShip = townShip;
     }
+    public Lodgment(String name, String classification, String address, String city, String townShip)
+    {
+        lodgmentName = name;
+        this.classification = classification;
+        fullAddress=address; this.city = city; this.townShip = townShip;
+    }
+
 
     public int getLodgmentId(){return lodgmentId;}
     public String getLodgmentName() {return lodgmentName;}

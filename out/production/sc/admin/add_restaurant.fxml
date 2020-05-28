@@ -58,7 +58,7 @@
                      <padding>
                         <Insets left="20.0" />
                      </padding></Label>
-                  <Label text="주소" GridPane.halignment="LEFT" GridPane.rowIndex="3">
+                  <Label text="도시" GridPane.halignment="LEFT" GridPane.rowIndex="3">
                      <padding>
                         <Insets left="20.0" />
                      </padding></Label>

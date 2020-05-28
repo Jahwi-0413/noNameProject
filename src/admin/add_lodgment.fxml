@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.text.Font?>
 <AnchorPane fx:id="mainasdf" prefHeight="500.0" prefWidth="557.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.addingWindowController">
     <children>
         <Button fx:id="addInsertBtn" layoutX="266.0" layoutY="429.0" mnemonicParsing="false" onAction="#clickAddInsert" prefHeight="40.0" style="-fx-background-color: #83dcb7;" text="입력" textFill="WHITE">
@@ -34,7 +31,7 @@
         </Pane>
         <Pane layoutY="92.0" prefHeight="337.0" prefWidth="600.0">
             <children>
-                <GridPane alignment="CENTER" prefHeight="337.0" prefWidth="560.0">
+                <GridPane fx:id="lodgmentGrid" alignment="CENTER" prefHeight="337.0" prefWidth="560.0">
                     <columnConstraints>
                         <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="137.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" minWidth="10.0" prefWidth="463.0" />
@@ -61,7 +58,7 @@
                             <padding>
                                 <Insets left="20.0" />
                             </padding></Label>
-                        <Label text="주소" GridPane.halignment="LEFT" GridPane.rowIndex="3">
+                        <Label text="도시" GridPane.halignment="LEFT" GridPane.rowIndex="3">
                             <padding>
                                 <Insets left="20.0" />
                             </padding></Label>
@@ -79,15 +76,14 @@
                             <padding>
                                 <Insets left="20.0" />
                             </padding></Label>
-                        <TextField prefHeight="22.0" prefWidth="439.0" GridPane.columnIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="lodgmentName" prefHeight="22.0" prefWidth="439.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="lodgmentClassification" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="lodgmentFullAddress" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="lodgmentCity" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="lodgmentTownShip" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="lodgmentPhoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                     </children>
                 </GridPane>
             </children></Pane>
     </children>
 </AnchorPane>
-
