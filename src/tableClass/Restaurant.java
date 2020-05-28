@@ -5,31 +5,31 @@ import java.io.Serializable;
 public class Restaurant implements Serializable
 {
     private static final long serialVersionUID = 2L;
-    private int restaurantId;          //관광지 id
-    private String restaurantName;        //관광지 이름
-    private String classification;  //분류
+    private int restaurantId;          //음식점 id
+    private String restaurantName;        //음식점 이름
+    private String menu;        //주메뉴
     private String fullAddress; //소재지
     private String city;        //지역
     private String townShip;    //읍면동
     private String phoneNumber; //전화번호
 
-    Restaurant(int id, String name, String classification, String address, String city, String townShip, String PhoneNumber)
+    public Restaurant(int id, String name, String menu, String address, String city, String townShip)
     {
         restaurantId=id; restaurantName = name;
-        this.classification = classification;
+        this.menu=menu;
         fullAddress=address; this.city = city; this.townShip = townShip;
-        this.phoneNumber = PhoneNumber;
     }
-    Restaurant(int id, String name, String classification, String address, String city, String townShip)
+
+    public Restaurant(String name, String menu, String address, String city, String townShip)
     {
-        restaurantId=id; restaurantName = name;
-        this.classification = classification;
+        restaurantName = name;
+        this.menu=menu;
         fullAddress=address; this.city = city; this.townShip = townShip;
     }
 
     public int getRestaurantId(){return restaurantId;}
     public String getRestaurantName() {return restaurantName;}
-    public String getClassification() {return classification;}
+    public String getMenu() {return menu;}
     public String getFullAddress() {return fullAddress;}
     public String getCity() {return city;}
     public String getTownShip() {return townShip;}
@@ -37,7 +37,7 @@ public class Restaurant implements Serializable
 
     public void setTourId(int id) {restaurantId=id;}
     public void setTourName(String name) {restaurantName=name;}
-    public void setClassification(String classification) {this.classification=classification;}
+    public void setMenu(String menu) {this.menu=menu;}
     public void setFullAddress(String address) {fullAddress=address;}
     public void setCity(String city) {this.city=city;}
     public void setTownShip(String townShip) {this.townShip = townShip;}

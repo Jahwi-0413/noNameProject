@@ -12,6 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import tableClass.Lodgment;
+import tableClass.Restaurant;
 
 import java.io.IOException;
 
@@ -26,11 +27,15 @@ public class addingWindowController
     @FXML
     private GridPane lodgmentGrid;
 
+    @FXML       //음식점 임력 fxml 파일의 textField들
+    private TextField restauranttName,restaurantMenu,restaurantFullAddress, restaurantCity, restaurantTownShip,restaurantPhoneNumber;
+
     @FXML       //숙박정보 임력 fxml 파일의 textField들
     private TextField lodgmentName,lodgmentClassification,lodgmentFullAddress, lodgmentCity, lodgmentTownShip,lodgmentPhoneNumber;
 
+
+
     private Stage thisStage;        //현재 윈도우를 저장하는 객체
-    private TextField nameField, oneMoreField, fullAddressField, cityField, townShipField, phoneNumberField;      //oneMore는 각각 공통되지않는 1개를 뜻하고 FXML에서 요소를 안가져온 이유는 버튼 클릭시마다 화면이 새로 생성되기 때문
     private static int tourClicked, lodgmentClicked, restaurantClicked;    //어떤 버튼이 눌렸는지 확인, 0이면 안눌림 1이면 눌림 -> insert Btn 클릭시 값을 저장하려고
 
     public void clickAddTour() throws IOException    //관광지 버튼을 눌렀을때 새로운 창이 열리고 이전 창은 닫힘, pane 내용 바꾸는건 포기함 ㅋㅋ
@@ -78,6 +83,7 @@ public class addingWindowController
     public void clickAddInsert()        //입력 완료 버튼을 눌렀을때
     {
         Lodgment lodgment;
+        Restaurant restaurant;
         if(tourClicked==1)
         {
         }
@@ -87,13 +93,33 @@ public class addingWindowController
         }
         if(restaurantClicked==1)
         {
+            restaurant = makeRestaurant();
         }
         //패킷 전송
     }
 
-    public  Lodgment makeLodgmentObject()
+    public Restaurant makeRestaurant()
     {
-        GridPane grid = lodgmentGrid;       //현재 화면의 View 객체와 연동이 됨!
+        String name =restauranttName.getText();
+        String menu= restaurantMenu.getText();
+        String address = restaurantFullAddress.getText();
+        String city = restaurantCity.getText();
+        String townShip = restaurantTownShip.getText();
+        String phoneNum = restaurantPhoneNumber.getText();
+
+        Restaurant restaurant;
+
+        if(phoneNum.equals(null))       //전화번호를 입력하지 않은 경우우
+            restaurant = new Restaurant(name, menu, address, city, townShip);
+        else
+        {
+            restaurant=new Restaurant(name,menu, address, city, townShip);
+            restaurant.setPhoneNumber(phoneNum);
+        }
+        return restaurant;
+    }
+    public Lodgment makeLodgmentObject()
+    {
         String name =lodgmentName.getText();
         String classification = lodgmentClassification.getText();
         String address = lodgmentFullAddress.getText();

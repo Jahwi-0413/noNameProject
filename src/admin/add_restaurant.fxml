@@ -76,12 +76,12 @@
                      <padding>
                         <Insets left="20.0" />
                      </padding></Label>
-                  <TextField prefHeight="22.0" prefWidth="439.0" GridPane.columnIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="restaurantName" prefHeight="22.0" prefWidth="439.0" GridPane.columnIndex="1" />
+                  <TextField fx:id="restaurantMenu" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="restaurantFullAddress" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="restaurantCity" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="restaurantTownShip" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="restaurantPhoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
             </GridPane>
          </children></Pane>
