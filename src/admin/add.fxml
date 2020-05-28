@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="mainasdf" prefHeight="500.0" prefWidth="557.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.addingWindowController">
+   <children>
+      <Button fx:id="addInsertBtn" layoutX="266.0" layoutY="429.0" mnemonicParsing="false" onAction="#clickAddInsert" prefHeight="40.0" style="-fx-background-color: #83dcb7;" text="입력" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Pane fx:id="addBtnPane" prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #83dcb7;">
+         <children>
+            <Button fx:id="addTourBtn" layoutX="77.0" layoutY="16.0" mnemonicParsing="false" onAction="#clickAddTour" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #83dcb7; -fx-border-color: white;" text="관광지" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="addRestrantBtn" layoutX="270.0" layoutY="16.0" mnemonicParsing="false" onAction="#clickAddRestrant" prefWidth="90.0" style="-fx-background-color: #83dcb7; -fx-border-color: white;" text="음식점" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="addLodgmentBtn" layoutX="443.0" layoutY="16.0" mnemonicParsing="false" onAction="#clickAddLodg" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #83dcb7; -fx-border-color: white;" text="숙박" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane layoutY="92.0" prefHeight="337.0" prefWidth="600.0">
+         <children>
+            <Label contentDisplay="CENTER" layoutX="150.0" layoutY="144.0" text="위의 버튼중 하나를 클릭하세요!">
+               <font>
+                  <Font size="22.0" />
+               </font></Label>
+         </children></Pane>
+   </children>
+</AnchorPane>

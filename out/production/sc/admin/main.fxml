@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.mainWindow">
+    <children>
+        <Pane prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: #83dcb7;">
+            <children>
+                <Button fx:id="mainAddBtn" layoutX="57.0" layoutY="80.0" mnemonicParsing="false" onAction="#clickAdd" prefHeight="40.0" style="-fx-background-color: #83dcb7; -fx-border-color: white;" text="추가" textFill="WHITE">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="mainDeleteBtn" layoutX="160.0" layoutY="80.0" mnemonicParsing="false" onAction="#clickDelete" prefHeight="40.0" style="-fx-background-color: #83dcb7; -fx-border-color: white;" text="삭제" textFill="WHITE">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
