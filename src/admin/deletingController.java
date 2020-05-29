@@ -10,16 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 
-public class deletingWindow extends Application
+public class deletingController
 {
-    @Override
-    public void start(Stage stage)
-    {
-        stage.show();
-    }
 
-    public static void main(String[] args)
-    {
-        launch();
-    }
 }

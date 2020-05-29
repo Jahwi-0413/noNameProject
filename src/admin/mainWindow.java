@@ -37,15 +37,6 @@ public class mainWindow extends Application
         Scene scene=new Scene(root);
         addWindow.setScene(scene);
         addWindow.show();
-
-        /*
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("add.fxml"));
-        Parent root = (Parent)loader.load();
-        Scene scene=new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        */
     }
     public void clickDelete()
     {

@@ -17,7 +17,7 @@ import tableClass.Tour;
 
 import java.io.IOException;
 
-public class addingWindowController
+public class addingController
 {
     @FXML
     private Button addLodgmentBtn,addTourBtn,addRestrantBtn;  //숙박, 관광지, 음식점 버튼

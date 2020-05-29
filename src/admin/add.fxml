@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="mainasdf" prefHeight="500.0" prefWidth="557.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.addingWindowController">
+<AnchorPane fx:id="mainasdf" prefHeight="500.0" prefWidth="557.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.addingController">
    <children>
       <Button fx:id="addInsertBtn" layoutX="266.0" layoutY="429.0" mnemonicParsing="false" onAction="#clickAddInsert" prefHeight="40.0" style="-fx-background-color: #83dcb7;" text="입력" textFill="WHITE">
          <font>
