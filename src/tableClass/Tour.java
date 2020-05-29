@@ -13,16 +13,15 @@ public class Tour implements Serializable
     private String townShip;    //읍면동
     private String phoneNumber; //전화번호
 
-    Tour(int id, String name, String classification, String address, String city, String townShip, String PhoneNumber)
+    public Tour(int id, String name, String classification, String address, String city, String townShip)
     {
         tourId=id; tourName = name;
         this.classification = classification;
         fullAddress=address; this.city = city; this.townShip = townShip;
-        this.phoneNumber = PhoneNumber;
     }
-    Tour(int id, String name, String classification, String address, String city, String townShip)
+    public Tour(String name, String classification, String address, String city, String townShip)
     {
-        tourId=id; tourName = name;
+        tourName = name;
         this.classification = classification;
         fullAddress=address; this.city = city; this.townShip = townShip;
     }

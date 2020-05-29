@@ -13,6 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import tableClass.Lodgment;
 import tableClass.Restaurant;
+import tableClass.Tour;
 
 import java.io.IOException;
 
@@ -27,8 +28,11 @@ public class addingWindowController
     @FXML
     private GridPane lodgmentGrid;
 
+    @FXML   //관광지 임력 fxml 파일의 textField들
+    private TextField tourName, tourClassification, tourFullAddress, tourCity, tourTownShip,tourPhoneNumber;
+
     @FXML       //음식점 임력 fxml 파일의 textField들
-    private TextField restauranttName,restaurantMenu,restaurantFullAddress, restaurantCity, restaurantTownShip,restaurantPhoneNumber;
+    private TextField restaurantName,restaurantMenu,restaurantFullAddress, restaurantCity, restaurantTownShip,restaurantPhoneNumber;
 
     @FXML       //숙박정보 임력 fxml 파일의 textField들
     private TextField lodgmentName,lodgmentClassification,lodgmentFullAddress, lodgmentCity, lodgmentTownShip,lodgmentPhoneNumber;
@@ -79,13 +83,16 @@ public class addingWindowController
         thisStage.setScene(scene);
         thisStage.show();
     }
-    /**/
+
     public void clickAddInsert()        //입력 완료 버튼을 눌렀을때
     {
         Lodgment lodgment;
         Restaurant restaurant;
+        Tour tour;
         if(tourClicked==1)
         {
+            tour = makeTour();
+            System.out.println(tour.getPhoneNumber());
         }
         if(lodgmentClicked==1)
         {
@@ -98,9 +105,30 @@ public class addingWindowController
         //패킷 전송
     }
 
+    public Tour makeTour()
+    {
+        String name =tourName.getText();
+        String classification = tourClassification.getText();
+        String address = tourFullAddress.getText();
+        String city = tourCity.getText();
+        String townShip = tourTownShip.getText();
+        String phoneNumber = tourPhoneNumber.getText();
+
+        Tour tour;
+        if(phoneNumber.equals(""))       //전화번호를 입력하지 않은 경우
+        {
+            tour = new Tour(name, classification, address, city, townShip);
+        }
+        else
+            {
+                tour = new Tour(name, classification, address, city, townShip);
+                tour.setPhoneNumber(phoneNumber);
+            }
+        return tour;
+    }
     public Restaurant makeRestaurant()
     {
-        String name =restauranttName.getText();
+        String name =restaurantName.getText();
         String menu= restaurantMenu.getText();
         String address = restaurantFullAddress.getText();
         String city = restaurantCity.getText();
@@ -109,7 +137,7 @@ public class addingWindowController
 
         Restaurant restaurant;
 
-        if(phoneNum.equals(null))       //전화번호를 입력하지 않은 경우우
+        if(phoneNum.equals(""))       //전화번호를 입력하지 않은 경우
             restaurant = new Restaurant(name, menu, address, city, townShip);
         else
         {
@@ -129,7 +157,7 @@ public class addingWindowController
 
         Lodgment lodgment;
 
-        if(phoneNum.equals(null))       //전화번호를 입력하지 않은 경우우
+        if(phoneNum.equals(""))       //전화번호를 입력하지 않은 경우
            lodgment = new Lodgment(name, classification, address, city, townShip);
         else
         {
