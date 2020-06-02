@@ -68,15 +68,13 @@ class SocketManager extends Thread
 
                 byte buf[] = new byte[10000000];
 
-                int bytesRead = is.read(buf, 0, buf.length);
-                int bodyLength = Protocol.byteArrayToint(Arrays.copyOfRange(buf, 4, 8));
-                int current = bytesRead;
-
                 for(int i = 0; i < 8; i++)
                 {
                     System.out.print(buf[i]);
                 }
                 System.out.println();
+
+                PacketReader.read(buf);
             }
         }
         catch(IOException e)

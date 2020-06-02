@@ -19,7 +19,7 @@ public class Protocol
     // Target
     public static final byte TAG_TRAVEL = 1;    // 관광지
     public static final byte TAG_FOOD = 2;      // 식당
-    public static final byte TAG_HOTEL = 3;     // 음식점
+    public static final byte TAG_HOTEL = 3;     // 숙소
 
     // 해당 없는 파트에 넣을 값
     public static final byte PT_NULL = 0;
