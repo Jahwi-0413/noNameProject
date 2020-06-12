@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="850.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.deleting">
+<AnchorPane prefHeight="500.0" prefWidth="850.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.deletingController">
    <children>
       <Pane prefHeight="70.0" prefWidth="850.0" style="-fx-background-color: #83dcb7;">
          <children>
@@ -25,11 +25,11 @@
                <font>
                   <Font size="20.0" />
                </font></Button>
-            <CheckBox fx:id="deleteGumiCheck" layoutX="325.0" layoutY="25.0" mnemonicParsing="false" onAction="#checkDeleteGumi" prefHeight="21.0" prefWidth="68.0" text="구미">
+            <CheckBox fx:id="deleteGumiCheck" layoutX="325.0" layoutY="25.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="68.0" text="구미">
                <font>
                   <Font size="15.0" />
                </font></CheckBox>
-            <CheckBox fx:id="deleteDaeguCheck" layoutX="393.0" layoutY="25.0" mnemonicParsing="false" onAction="#checkDeleteGaegu" text="대구">
+            <CheckBox fx:id="deleteDaeguCheck" layoutX="393.0" layoutY="25.0" mnemonicParsing="false" text="대구">
                <font>
                   <Font size="15.0" />
                </font></CheckBox>
@@ -41,10 +41,10 @@
               <columns>
                 <TableColumn prefWidth="75.0" style="-fx-background-color: #83dcb7;" text="C1" />
                 <TableColumn prefWidth="75.0" style="-fx-background-color: #83dcb7;" text="C2" />
-                  <TableColumn prefWidth="75.0" style="-fx-background-color: #83dcb7;" text="C3" />
-                  <TableColumn prefWidth="75.0" style="-fx-background-color: #83dcb7;" text="C4" />
-                  <TableColumn prefWidth="75.0" style="-fx-background-color: #83dcb7;" text="C5" />
-                  <TableColumn prefWidth="75.0" style="-fx-background-color: #83dcb7;" text="C6" />
+                  <TableColumn prefWidth="172.0" style="-fx-background-color: #83dcb7;" text="C3" />
+                  <TableColumn prefWidth="139.0" style="-fx-background-color: #83dcb7;" text="C4" />
+                  <TableColumn prefWidth="163.0" style="-fx-background-color: #83dcb7;" text="C5" />
+                  <TableColumn prefWidth="175.0" style="-fx-background-color: #83dcb7;" text="C6" />
               </columns>
             </TableView>
          </children></Pane>
