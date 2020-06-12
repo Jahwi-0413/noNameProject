@@ -62,11 +62,11 @@ public class deletingController
                 break;
             case "restaurant":
                 tourClicked=0; restaurantClicked=1; lodgmentClicked=0;
-                second=FXMLLoader.load(getClass().getResource("delete_tour.fxml"));
+                second=FXMLLoader.load(getClass().getResource("delete_restaurant.fxml"));
                 break;
             case "lodgment":
                 tourClicked=0; restaurantClicked=0; lodgmentClicked=1;
-                second=FXMLLoader.load(getClass().getResource("delete_tour.fxml"));
+                second=FXMLLoader.load(getClass().getResource("delete_lodgment.fxml"));
                 break;
             default:
                 second=null;
