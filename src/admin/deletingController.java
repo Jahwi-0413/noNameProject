@@ -34,8 +34,12 @@ public class deletingController
     @FXML
     private TableView<Lodgment> lodgmentTableView;  //숙박 정보를 담는 테이블뷰
 
+
     private Stage thisStage;
     private int tourClicked=0, restaurantClicked=0,lodgmentClicked=0;  //어떤 버튼이 눌렸는지 확인하는 값 0이면 안눌림, 1이면 눌림
+
+    //--------------------------------------------------------------------------------------------------------------------------
+    //화면 셋팅 관련
 
     public void clickDeleteTour() throws IOException       //관광점 버튼을 눌렀을 때 화면 나오게 하기
     {
@@ -78,40 +82,63 @@ public class deletingController
         thisStage.setScene(scene);
         thisStage.show();
     }
+
+    //--------------------------------------------------------------------------------------------------------------------------
+    //검색 관련
+
     public void clickDeleteSearch()     //검색 버튼을 눌렀을 때
     {
         String keyWord = deleteTextField.getText(); //검색어를 들고온다
         if(deleteGumiCheck.isSelected() && deleteDaeguCheck.isSelected()==false)    //구미에 대한 정보를 검색하는 경우
         {
-            //db매니저에 (아직 구현은 안했지만) 일을 맡긴다
-            //db 매니저로부터 테이블에 넣을 값들을 가져온다
+            //서버에 요청
+            //서버로부터 응답 받은걸 테이블뷰에 넣어줌
         }
-        else if(deleteDaeguCheck.isSelected() && deleteGumiCheck.isSelected()==false)
+        else if(deleteDaeguCheck.isSelected() && deleteGumiCheck.isSelected()==false)   //대구에 대한 정보를 검색하는 경우
         {
-            //db매니저에 (아직 구현은 안했지만) 일을 맡긴다
-            //db 매니저로부터 테이블에 넣을 값들을 가져온다
-
+            //서버에 요청
+            //서버로부터 응답 받은걸 테이블뷰에 넣어줌
         }
         else if(deleteGumiCheck.isSelected()==false && deleteDaeguCheck.isSelected()==false)        //둘다 선택 안된 경우
         {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("error");
-            alert.setHeaderText("경고");
-            alert.setContentText("체크 박스를 선택해 주세요");
-            alert.showAndWait();
+            alert("둘다 선택 안함");  //경고창
         }
         else if(deleteGumiCheck.isSelected() && deleteDaeguCheck.isSelected())        //둘다 선택된 경우
         {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("error");
-            alert.setHeaderText("경고");
-            alert.setContentText("체크 박스를 하나만 선택해 주세요");
-            alert.showAndWait();
+            alert("둘다 선택됨");
         }
     }
+    public void alert(String errorMsg)
+    {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("error");
+        alert.setHeaderText("경고");
+
+        if(errorMsg.equals("둘다 선택 안함"))
+            alert.setContentText("체크 박스를 선택해 주세요");
+        else if(errorMsg.equals("둘다 선택함"))
+            alert.setContentText("체크 박스를 하나만 선택해 주세요");
+        alert.showAndWait();
+    }
+
+    //--------------------------------------------------------------------------------------------------------------------------
+    //삭제 요청 관련련
+
     public void clickDelete()
     {
+        if(tourClicked==1)  //관광지 정보 삭제시
+        {
+            //선택된거 들고와서
+            //서버로 삭제 요청을 보낸다
 
+        }
+        else if(restaurantClicked==1)   //음식점 정보 삭제시
+        {
+
+        }
+        else if(lodgmentClicked==1) // 숙박업소 정보 삭제시
+        {
+        }
     }
 
 }
