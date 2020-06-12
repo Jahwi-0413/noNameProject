@@ -1,9 +1,13 @@
 package server;
 
 import server.Protocol;
+import java.util.*;
+import tableClass.*;
 
 // 패킷을 분석해서 적절한 작업으로 연결해주는 클래스
 public class PacketReader {
+    private static DBManager db = DBManager.getInstance();
+
     public static void read(byte[] packet)
     {
         switch(packet[0])
@@ -15,13 +19,14 @@ public class PacketReader {
                         switch(packet[3])
                         {
                             case Protocol.TAG_TRAVEL:   // 사용자의 관광지 조회
-                                // 이곳에 동작 기술
+                                //TODO: 이곳에 동작 기술
                                 break;
                             case Protocol.TAG_FOOD:     // 사용자의 식당 조회
-                                // 이곳에 동작 기술
+                                //TODO: 이곳에 동작 기술
                                 break;
                             case Protocol.TAG_HOTEL:    // 사용자의 숙소 조회
-                                // 이곳에 동작 기술
+                                ArrayList<Lodgment> list = db.getLodgmentList();
+                                //TODO: list를 출력함수로 넘겨서 출력
                                 break;
                         }
                         break;
@@ -35,13 +40,14 @@ public class PacketReader {
                         switch(packet[3])
                         {
                             case Protocol.TAG_TRAVEL:   // 관리자의 관광지 조회
-                                // 이곳에 동작 기술
+                                //TODO: 이곳에 동작 기술
                                 break;
                             case Protocol.TAG_FOOD:     // 관리자의 식당 조회
-                                // 이곳에 동작 기술
+                                //TODO: 이곳에 동작 기술
                                 break;
                             case Protocol.TAG_HOTEL:    // 관리자의 숙소 조회
-                                // 이곳에 동작 기술
+                                ArrayList<Lodgment> list = db.getLodgmentList();
+                                //TODO: list를 출력함수로 넘겨서 출력
                                 break;
                         }
                         break;
@@ -49,13 +55,13 @@ public class PacketReader {
                         switch(packet[3])
                         {
                             case Protocol.TAG_TRAVEL:   // 관리자의 관광지 추가
-                                // 이곳에 동작 기술
+                                //TODO: 이곳에 동작 기술
                                 break;
                             case Protocol.TAG_FOOD:     // 관리자의 식당 추가
-                                // 이곳에 동작 기술
+                                //TODO: 이곳에 동작 기술
                                 break;
                             case Protocol.TAG_HOTEL:    // 관리자의 숙소 추가
-                                // 이곳에 동작 기술
+                                //TODO: 이곳에 동작 기술
                                 break;
                         }
                         break;
@@ -63,13 +69,13 @@ public class PacketReader {
                         switch(packet[3])
                         {
                             case Protocol.TAG_TRAVEL:   // 관리자의 관광지 삭제
-                                // 이곳에 동작 기술
+                                //TODO: 이곳에 동작 기술
                                 break;
                             case Protocol.TAG_FOOD:     // 관리자의 식당 삭제
-                                // 이곳에 동작 기술
+                                //TODO: 이곳에 동작 기술
                                 break;
                             case Protocol.TAG_HOTEL:    // 관리자의 숙소 삭제
-                                // 이곳에 동작 기술
+                                //TODO: 이곳에 동작 기술
                                 break;
                         }
                         break;
