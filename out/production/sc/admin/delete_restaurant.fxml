@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="850.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.deletingController">
+   <children>
+      <Pane prefHeight="70.0" prefWidth="850.0" style="-fx-background-color: #83dcb7;">
+         <children>
+            <Button fx:id="deleteTourBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickDeleteTour" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #83dcb7; -fx-border-color: white;" text="관광지" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="deleteRestrantBtn" layoutX="119.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickDeleteRestrant" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #83dcb7; -fx-border-color: white;" text="음식점" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="deleteLodgmentBtn" layoutX="222.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickDeleteLodg" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #83dcb7; -fx-border-color: white;" text="숙박" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <TextField fx:id="deleteTextField" layoutX="461.0" layoutY="16.0" prefHeight="40.0" prefWidth="295.0" />
+            <Button fx:id="deleteSearchBtn" layoutX="770.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickDeleteSearch" prefHeight="40.0" style="-fx-background-color: #83dcb7; -fx-border-color: white;" text="검색" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <CheckBox fx:id="deleteGumiCheck" layoutX="325.0" layoutY="25.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="68.0" text="구미">
+               <font>
+                  <Font size="15.0" />
+               </font></CheckBox>
+            <CheckBox fx:id="deleteDaeguCheck" layoutX="393.0" layoutY="25.0" mnemonicParsing="false" text="대구">
+               <font>
+                  <Font size="15.0" />
+               </font></CheckBox>
+         </children>
+      </Pane>
+      <Pane fx:id="deleteContentPane" layoutY="75.0" prefHeight="350.0" prefWidth="850.0">
+         <children>
+            <TableView layoutX="25.0" layoutY="14.0" prefHeight="350.0" prefWidth="800.0" style="-fx-background-color: white;">
+              <columns>
+                <TableColumn prefWidth="121.0" style="-fx-background-color: #83dcb7;" text="가게 이름" />
+                <TableColumn prefWidth="121.0" style="-fx-background-color: #83dcb7;" text="주메뉴" />
+                  <TableColumn prefWidth="353.0" style="-fx-background-color: #83dcb7;" text="소재지" />
+                  <TableColumn prefWidth="204.0" style="-fx-background-color: #83dcb7;" text="전화번호" />
+              </columns>
+            </TableView>
+         </children></Pane>
+      <Button fx:id="deleteBtn" layoutX="391.0" layoutY="437.0" mnemonicParsing="false" onAction="#clickDelete" style="-fx-background-color: #83dcb7;" text="삭제" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+   </children>
+</AnchorPane>
