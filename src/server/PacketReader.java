@@ -19,13 +19,15 @@ public class PacketReader {
                         switch(packet[3])
                         {
                             case Protocol.TAG_TRAVEL:   // 사용자의 관광지 조회
-                                //TODO: 이곳에 동작 기술
+                                ArrayList<Tour> tourList = db.getTourList();
+                                //TODO: list를 출력함수로 넘겨서 출력
                                 break;
                             case Protocol.TAG_FOOD:     // 사용자의 식당 조회
-                                //TODO: 이곳에 동작 기술
+                                ArrayList<Restaurant> resList = db.getRestaurantList();
+                                //TODO: list를 출력함수로 넘겨서 출력
                                 break;
                             case Protocol.TAG_HOTEL:    // 사용자의 숙소 조회
-                                ArrayList<Lodgment> list = db.getLodgmentList();
+                                ArrayList<Lodgment> lodgList = db.getLodgmentList();
                                 //TODO: list를 출력함수로 넘겨서 출력
                                 break;
                         }
@@ -40,13 +42,15 @@ public class PacketReader {
                         switch(packet[3])
                         {
                             case Protocol.TAG_TRAVEL:   // 관리자의 관광지 조회
-                                //TODO: 이곳에 동작 기술
+                                ArrayList<Tour> tourList = db.getTourList();
+                                //TODO: list를 출력함수로 넘겨서 출력
                                 break;
                             case Protocol.TAG_FOOD:     // 관리자의 식당 조회
-                                //TODO: 이곳에 동작 기술
+                                ArrayList<Restaurant> resList = db.getRestaurantList();
+                                //TODO: list를 출력함수로 넘겨서 출력
                                 break;
                             case Protocol.TAG_HOTEL:    // 관리자의 숙소 조회
-                                ArrayList<Lodgment> list = db.getLodgmentList();
+                                ArrayList<Lodgment> lodgList = db.getLodgmentList();
                                 //TODO: list를 출력함수로 넘겨서 출력
                                 break;
                         }
