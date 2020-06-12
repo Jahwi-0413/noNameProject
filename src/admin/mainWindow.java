@@ -16,7 +16,7 @@ public class mainWindow extends Application
 {
     @FXML
     private Button mainAddBtn, mainDeleteBtn;
-    public Stage primaryStage, addWindow;
+    public Stage primaryStage, addWindow, deleteWindow;
     @Override
     public void start(Stage stage) throws IOException
     {
@@ -38,9 +38,17 @@ public class mainWindow extends Application
         addWindow.setScene(scene);
         addWindow.show();
     }
-    public void clickDelete()
+    public void clickDelete() throws IOException
     {
-        new deletingWindow();   //삭제 창을 연다(새로운 창)
+        Stage stage = new Stage();
+        deleteWindow = stage;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("delete.fxml"));
+        Parent root = (Parent)loader.load();
+        Scene scene = new Scene(root);
+        deleteWindow.setScene(scene);
+        deleteWindow.show();
+
+        //new deletingWindow();   //삭제 창을 연다(새로운 창)
     }
     public static void main(String[] args)
     {
