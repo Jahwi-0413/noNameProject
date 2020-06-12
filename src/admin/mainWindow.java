@@ -38,7 +38,7 @@ public class mainWindow extends Application
         addWindow.setScene(scene);
         addWindow.show();
     }
-    public void clickDelete() throws IOException
+    public void clickDelete(ActionEvent event) throws IOException
     {
         Stage stage = new Stage();
         deleteWindow = stage;
@@ -47,8 +47,6 @@ public class mainWindow extends Application
         Scene scene = new Scene(root);
         deleteWindow.setScene(scene);
         deleteWindow.show();
-
-        //new deletingWindow();   //삭제 창을 연다(새로운 창)
     }
     public static void main(String[] args)
     {
