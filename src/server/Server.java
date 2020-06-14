@@ -66,7 +66,9 @@ class SocketManager extends Thread
             {
                 if(isExit) break;
 
-                byte buf[] = new byte[10000000];
+                byte buf[] = new byte[1000000];
+
+                int bytesRead = is.read(buf, 0, buf.length);
 
                 for(int i = 0; i < 8; i++)
                 {
@@ -74,7 +76,7 @@ class SocketManager extends Thread
                 }
                 System.out.println();
 
-                PacketReader.read(buf);
+                //PacketReader.read(buf);
             }
         }
         catch(IOException e)
