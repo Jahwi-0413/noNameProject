@@ -14,17 +14,15 @@ public class DBManager
     private static DBManager db = new DBManager();
     private Connection conn;
 
-    //TODO: 이 부분은 DB 구축 이후에 연결할 때 추가
-    private final String ID = "";
-    private final String PASSWORD = "";
+    private final String ID = "user";
+    private final String PASSWORD = "12345";
 
     private DBManager()
     {
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            //TODO: 이 부분은 DB 구축 이후에 연결할 때 추가
-            String url = ""; 
+            String url = "jdbc:mysql://" + "192.168.25.43" + ":3306" + "/창의프로젝트" + "?characterEncoding=UTF-8&serverTimezone=UTC";
             conn = DriverManager.getConnection(url, ID, PASSWORD);
         }
         catch(Exception e)
@@ -165,5 +163,96 @@ public class DBManager
         }
 
         return list;
+    }
+
+    public boolean addTour(Tour tour)
+    {
+        PreparedStatement pstmt = null;
+
+        try
+        {
+            //TODO: DB 구축 이후에 적절한 SQL문 삽입
+            pstmt = conn.prepareStatement("");
+
+            pstmt.executeUpdate();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        finally
+        {
+            try
+            {
+                pstmt.close();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        return true;
+    }
+
+    public boolean addLodgment(Lodgment lodg)
+    {
+        PreparedStatement pstmt = null;
+
+        try
+        {
+            //TODO: DB 구축 이후에 적절한 SQL문 삽입
+            pstmt = conn.prepareStatement("");
+
+            pstmt.executeUpdate();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        finally
+        {
+            try
+            {
+                pstmt.close();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        return true;
+    }
+
+    public boolean addRestaurant(Restaurant res)
+    {
+        PreparedStatement pstmt = null;
+
+        try
+        {
+            //TODO: DB 구축 이후에 적절한 SQL문 삽입
+            pstmt = conn.prepareStatement("");
+
+            pstmt.executeUpdate();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        finally
+        {
+            try
+            {
+                pstmt.close();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        return true;
     }
 }
