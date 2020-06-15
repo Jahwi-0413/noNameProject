@@ -41,8 +41,6 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
                   <Label text="음식점 이름" GridPane.halignment="LEFT">
@@ -58,18 +56,7 @@
                      <padding>
                         <Insets left="20.0" />
                      </padding></Label>
-                  <Label text="도시" GridPane.halignment="LEFT" GridPane.rowIndex="3">
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding></Label>
-                  <Label text="읍면동" GridPane.halignment="LEFT" GridPane.rowIndex="4">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding></Label>
-                  <Label text="전화번호" GridPane.halignment="LEFT" GridPane.rowIndex="5">
+                  <Label text="전화번호" GridPane.halignment="LEFT" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets right="10.0" />
                      </GridPane.margin>
@@ -79,9 +66,7 @@
                   <TextField fx:id="restaurantName" prefHeight="22.0" prefWidth="439.0" GridPane.columnIndex="1" />
                   <TextField fx:id="restaurantMenu" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="restaurantFullAddress" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="restaurantCity" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="restaurantTownShip" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="restaurantPhoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="restaurantPhoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
          </children></Pane>

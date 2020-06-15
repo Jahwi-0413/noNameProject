@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -22,19 +23,29 @@ public class AdminClient extends Application
     @Override
     public void start(Stage stage) throws IOException
     {
-        primaryStage=stage;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminMain.fxml"));
-        Parent root=(Parent)loader.load();  //FXML의 요소들을 가져온다
-        Scene scene=new Scene(root);    //root의 장면을 Scene으로 옮김
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        try
+        {
+            getConnectionServer();
+            primaryStage=stage;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminMain.fxml"));
+            Parent root=(Parent)loader.load();  //FXML의 요소들을 가져온다
+            Scene scene=new Scene(root);    //root의 장면을 Scene으로 옮김
+            primaryStage.setScene(scene);
+            primaryStage.show();
+
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public static void getConnectionServer() throws IOException, UnknownHostException
     {
         host= "localhost";      //local에서 test 해보기 위해서
         Socket socket = new Socket(host,10000);    //서버 접속
-        packetMng = new PacketManager(socket);
+        PacketManager manager= new PacketManager(socket);
+        AdminServerConnector.setPacketManager(manager);
+
     }
     public void clickAdd(ActionEvent event)throws IOException
     {
@@ -58,14 +69,6 @@ public class AdminClient extends Application
     }
     public static void main(String[] args)
     {
-        try
-        {
-            getConnectionServer();
-
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-        }
         launch();
     }
 

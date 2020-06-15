@@ -47,7 +47,6 @@ public class addingController
         Stage stage=(Stage)addLodgmentBtn.getScene().getWindow();   //addLodgmentBtn을 포함한 stage
         thisStage=stage;
         stage.close();
-
         Parent second=FXMLLoader.load(getClass().getResource("add_restaurant.fxml"));
         Scene scene=new Scene(second);
         thisStage.setScene(scene);
@@ -62,7 +61,6 @@ public class addingController
         Stage stage=(Stage)addLodgmentBtn.getScene().getWindow();   //addLodgmentBtn을 포함한 stage
         thisStage=stage;
         stage.close();
-
         Parent second=FXMLLoader.load(getClass().getResource("add_lodgment.fxml"));
         Scene scene=new Scene(second);
         thisStage.setScene(scene);
@@ -77,14 +75,17 @@ public class addingController
         if(tourClicked==1)
         {
             tour = makeTour();
+            AdminServerConnector.getPacketManager().insertRequest(1, tour);
         }
         if(lodgmentClicked==1)
         {
             lodgment = makeLodgmentObject();
+            AdminServerConnector.getPacketManager().insertRequest(3, lodgment);
         }
         if(restaurantClicked==1)
         {
             restaurant = makeRestaurant();
+            AdminServerConnector.getPacketManager().insertRequest(2, restaurant);
         }
         //패킷 전송
     }
