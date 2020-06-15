@@ -180,8 +180,8 @@ public class DBManager
 
         try
         {
-            //TODO: 재희가 무슨 프로시저인가 뭔가하는거 써놓을 예정
-            pstmt = conn.prepareStatement("");
+            pstmt = conn.prepareStatement("call keyword_search('lodgment', ?)");
+            pstmt.setString(1, keyword);
             rs = pstmt.executeQuery();
 
             while(rs.next())
@@ -228,8 +228,8 @@ public class DBManager
 
         try
         {
-            //TODO: 재희가 무슨 프로시저인가 뭔가하는거 써놓을 예정
-            pstmt = conn.prepareStatement("");
+            pstmt = conn.prepareStatement("call keyword_search('restaurant', ?)");
+            pstmt.setString(1, keyword);
             rs = pstmt.executeQuery();
 
             while(rs.next())
@@ -276,8 +276,8 @@ public class DBManager
 
         try
         {
-            //TODO: 재희가 무슨 프로시저인가 뭔가하는거 써놓을 예정
-            pstmt = conn.prepareStatement("");
+            pstmt = conn.prepareStatement("call keyword_search('tour', ?)");
+            pstmt.setString(1, keyword);
             rs = pstmt.executeQuery();
 
             while(rs.next())
