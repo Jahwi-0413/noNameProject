@@ -1,8 +1,6 @@
 package server;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Arrays;
@@ -57,10 +55,8 @@ class SocketManager extends Thread
         boolean isExit = false;
         try
         {
-            OutputStream os = socket.getOutputStream();
-            InputStream is = socket.getInputStream();
-
-            Protocol protocol = new Protocol();
+            BufferedInputStream reader = new BufferedInputStream(socket.getInputStream());
+            BufferedOutputStream writer = new BufferedOutputStream(socket.getOutputStream());
 
             while(true)
             {
@@ -68,7 +64,7 @@ class SocketManager extends Thread
 
                 byte buf[] = new byte[1000000];
 
-                int bytesRead = is.read(buf, 0, buf.length);
+                int bytesRead = reader.read(buf, 0, buf.length);
 
                 for(int i = 0; i < 8; i++)
                 {
@@ -76,7 +72,10 @@ class SocketManager extends Thread
                 }
                 System.out.println();
 
-                //PacketReader.read(buf);
+                byte[] answer = PacketReader.read(buf);
+
+                writer.write(answer);
+                writer.flush();
             }
         }
         catch(IOException e)
