@@ -1,5 +1,6 @@
 package admin;
 
+import communicate.PacketManager;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,24 +8,34 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
-public class mainWindow extends Application
+public class AdminClient extends Application
 {
     @FXML
     public Stage primaryStage, addWindow, deleteWindow;
+    private static PacketManager packetMng;
+    private static String host;
+
     @Override
     public void start(Stage stage) throws IOException
     {
         primaryStage=stage;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminMain.fxml"));
         Parent root=(Parent)loader.load();  //FXML의 요소들을 가져온다
         Scene scene=new Scene(root);    //root의 장면을 Scene으로 옮김
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
+    public static void getConnectionServer() throws IOException, UnknownHostException
+    {
+        host= "localhost";      //local에서 test 해보기 위해서
+        Socket socket = new Socket(host,10000);    //서버 접속
+        packetMng = new PacketManager(socket);
+    }
     public void clickAdd(ActionEvent event)throws IOException
     {
         Stage stage = new Stage();
@@ -47,6 +58,14 @@ public class mainWindow extends Application
     }
     public static void main(String[] args)
     {
+        try
+        {
+            getConnectionServer();
+
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
         launch();
     }
 
