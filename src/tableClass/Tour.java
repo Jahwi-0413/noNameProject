@@ -1,6 +1,6 @@
 package tableClass;
 
-import java.io.Serializable;
+import java.io.*;
 
 public class Tour implements Serializable
 {
@@ -41,4 +41,43 @@ public class Tour implements Serializable
     public void setCity(String city) {this.city=city;}
     public void setTownShip(String townShip) {this.townShip = townShip;}
     public void setPhoneNumber(String phoneNum) {phoneNumber=phoneNum;}
+
+    // Object to Byte[]
+    public byte[] toByteArray()
+    {
+        Tour obj = this;
+        byte[] result = null;
+
+        try
+        {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(obj);
+            result = baos.toByteArray();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    // Byte[] to Object
+    public static Tour toObject(byte[] data)
+    {
+        Tour obj = null;
+        try
+        {
+            ByteArrayInputStream bais = new ByteArrayInputStream(data);
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            obj = (Tour) ois.readObject();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return obj;
+    }
 }

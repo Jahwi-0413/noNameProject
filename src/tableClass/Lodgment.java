@@ -1,6 +1,6 @@
 package tableClass;
 
-import java.io.Serializable;
+import java.io.*;
 
 public class Lodgment implements Serializable    //숙박시설
 {
@@ -42,4 +42,43 @@ public class Lodgment implements Serializable    //숙박시설
     public void setCity(String city) {this.city=city;}
     public void setTownShip(String townShip) {this.townShip = townShip;}
     public void setPhoneNumber(String phoneNum) {phoneNumber=phoneNum;}
+
+    // Object to Byte[]
+    public byte[] toByteArray()
+    {
+        Lodgment obj = this;
+        byte[] result = null;
+
+        try
+        {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(obj);
+            result = baos.toByteArray();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    // Byte[] to Object
+    public static Lodgment toObject(byte[] data)
+    {
+        Lodgment obj = null;
+        try
+        {
+            ByteArrayInputStream bais = new ByteArrayInputStream(data);
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            obj = (Lodgment) ois.readObject();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return obj;
+    }
 }
