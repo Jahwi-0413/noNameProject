@@ -39,23 +39,25 @@ public class DBManager
 
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        Lodgment r = null;
+        Lodgment l = null;
         
         try
         {
-            //TODO: DB 구축 이후에 적절한 SQL문 삽입
-            pstmt = conn.prepareStatement("");
+            pstmt = conn.prepareStatement("select * from 창의프로젝트.lodgment");
             rs = pstmt.executeQuery();
 
             while(rs.next())
             {
-                // DB에는 데이터가 ID, 이름, 분류, 소재지, 지역, 읍면동 순서로 들어가있다고 가정
-                r = new Lodgment(
-                    rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)
+                // DB에는 데이터가 ID, 이름, 등급, 주소, 전화번호 순서로 들어감
+                l = new Lodgment(
+                    rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)
                 );
-            }
 
-            list.add(r);
+                if(rs.getString(5) != null)
+                    l.setPhoneNumber(rs.getString(5));
+
+                list.add(l);
+            }
         }
         catch(Exception e)
         {
@@ -87,19 +89,21 @@ public class DBManager
 
         try
         {
-            //TODO: DB 구축 이후에 적절한 SQL문 삽입
-            pstmt = conn.prepareStatement("");
+            pstmt = conn.prepareStatement("select  * from 창의프로젝트.restaurant");
             rs = pstmt.executeQuery();
 
             while(rs.next())
             {
-                // DB에는 데이터가 ID, 음식점 이름, 주메뉴, 소재지, 지역, 읍면동 순서로 들어가있다고 가정
+                // DB에는 데이터가 ID, 음식점 이름, 주메뉴, 주소, 전화번호 순서로 들어감
                 r = new Restaurant(
-                    rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)
+                    rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)
                 );
-            }
 
-            list.add(r);
+                if(rs.getString(5) != null)
+                    r.setPhoneNumber(rs.getString(5));
+
+                list.add(r);
+            }
         }
         catch(Exception e)
         {
@@ -131,19 +135,19 @@ public class DBManager
 
         try
         {
-            //TODO: DB 구축 이후에 적절한 SQL문 삽입
-            pstmt = conn.prepareStatement("");
+            pstmt = conn.prepareStatement("select * from 창의프로젝트.tour");
             rs = pstmt.executeQuery();
 
             while(rs.next())
             {
-                // DB에는 데이터가 ID, 음식점 이름, 분류, 소재지, 지역, 읍면동 순서로 들어가있다고 가정
+                // DB에는 데이터가 ID, 이름, 분류, 주소, 전화번호 순서로 들어감
                 t = new Tour(
-                    rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)
+                    rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)
                 );
+                if(rs.getString(5) != null)
+                    t.setPhoneNumber(rs.getString(5));
+                list.add(t);
             }
-
-            list.add(t);
         }
         catch(Exception e)
         {
@@ -172,23 +176,26 @@ public class DBManager
 
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        Lodgment r = null;
+        Lodgment l = null;
 
         try
         {
-            //TODO: DB 구축 이후에 적절한 SQL문 삽입
+            //TODO: 재희가 무슨 프로시저인가 뭔가하는거 써놓을 예정
             pstmt = conn.prepareStatement("");
             rs = pstmt.executeQuery();
 
             while(rs.next())
             {
-                // DB에는 데이터가 ID, 이름, 분류, 소재지, 지역, 읍면동 순서로 들어가있다고 가정
-                r = new Lodgment(
-                        rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)
+                // DB에는 데이터가 ID, 이름, 등급, 주소, 전화번호 순서로 들어감
+                l = new Lodgment(
+                        rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)
                 );
-            }
 
-            list.add(r);
+                if(rs.getString(5) != null)
+                    l.setPhoneNumber(rs.getString(5));
+
+                list.add(l);
+            }
         }
         catch(Exception e)
         {
@@ -221,19 +228,22 @@ public class DBManager
 
         try
         {
-            //TODO: DB 구축 이후에 적절한 SQL문 삽입
+            //TODO: 재희가 무슨 프로시저인가 뭔가하는거 써놓을 예정
             pstmt = conn.prepareStatement("");
             rs = pstmt.executeQuery();
 
             while(rs.next())
             {
-                // DB에는 데이터가 ID, 음식점 이름, 주메뉴, 소재지, 지역, 읍면동 순서로 들어가있다고 가정
+                // DB에는 데이터가 ID, 음식점 이름, 주메뉴, 주소, 전화번호 순서로 들어감
                 r = new Restaurant(
-                        rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)
+                        rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)
                 );
-            }
 
-            list.add(r);
+                if(rs.getString(5) != null)
+                    r.setPhoneNumber(rs.getString(5));
+
+                list.add(r);
+            }
         }
         catch(Exception e)
         {
@@ -266,19 +276,20 @@ public class DBManager
 
         try
         {
-            //TODO: DB 구축 이후에 적절한 SQL문 삽입
+            //TODO: 재희가 무슨 프로시저인가 뭔가하는거 써놓을 예정
             pstmt = conn.prepareStatement("");
             rs = pstmt.executeQuery();
 
             while(rs.next())
             {
-                // DB에는 데이터가 ID, 음식점 이름, 분류, 소재지, 지역, 읍면동 순서로 들어가있다고 가정
+                // DB에는 데이터가 ID, 이름, 분류, 주소, 전화번호 순서로 들어감
                 t = new Tour(
-                        rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)
+                        rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)
                 );
+                if(rs.getString(5) != null)
+                    t.setPhoneNumber(rs.getString(5));
+                list.add(t);
             }
-
-            list.add(t);
         }
         catch(Exception e)
         {
@@ -306,8 +317,14 @@ public class DBManager
 
         try
         {
-            //TODO: DB 구축 이후에 적절한 SQL문 삽입
-            pstmt = conn.prepareStatement("");
+            pstmt = conn.prepareStatement("insert into 창의프로젝트.tour " +
+                    "('tourID', 'tourName', 'classification', 'fullAddress', 'phoneNumber') " +
+                    "values (?, ?, ?, ?, ?)");
+            pstmt.setInt(1, tour.getTourId());
+            pstmt.setString(2, tour.getTourName());
+            pstmt.setString(3, tour.getClassification());
+            pstmt.setString(4, tour.getFullAddress());
+            pstmt.setString(5, tour.getPhoneNumber());
 
             pstmt.executeUpdate();
         }
@@ -337,8 +354,14 @@ public class DBManager
 
         try
         {
-            //TODO: DB 구축 이후에 적절한 SQL문 삽입
-            pstmt = conn.prepareStatement("");
+            pstmt = conn.prepareStatement("insert into 창의프로젝트.tour " +
+                    "('lodgmentID', 'lodgmentName', 'classification', 'fullAddress', 'phoneNumber') " +
+                    "values (?, ?, ?, ?, ?)");
+            pstmt.setInt(1, lodg.getLodgmentId());
+            pstmt.setString(2, lodg.getLodgmentName());
+            pstmt.setString(3, lodg.getClassification());
+            pstmt.setString(4, lodg.getFullAddress());
+            pstmt.setString(5, lodg.getPhoneNumber());
 
             pstmt.executeUpdate();
         }
@@ -367,8 +390,14 @@ public class DBManager
 
         try
         {
-            //TODO: DB 구축 이후에 적절한 SQL문 삽입
-            pstmt = conn.prepareStatement("");
+            pstmt = conn.prepareStatement("insert into 창의프로젝트.restaurant " +
+                    "('restaurantID', 'restaurantName', 'mainMenu', 'fullAddress', 'phoneNumber') " +
+                    "values (?, ?, ?, ?, ?)");
+            pstmt.setInt(1, res.getRestaurantId());
+            pstmt.setString(2, res.getRestaurantName());
+            pstmt.setString(3, res.getMenu());
+            pstmt.setString(4, res.getFullAddress());
+            pstmt.setString(5, res.getPhoneNumber());
 
             pstmt.executeUpdate();
         }
@@ -397,8 +426,8 @@ public class DBManager
 
         try
         {
-            //TODO: DB 구축 이후에 적절한 SQL문 삽입
-            pstmt = conn.prepareStatement("");
+            pstmt = conn.prepareStatement("delete from 창의프로젝트.tour where tourID = ?");
+            pstmt.setInt(1, id);
 
             pstmt.executeUpdate();
         }
@@ -428,8 +457,8 @@ public class DBManager
 
         try
         {
-            //TODO: DB 구축 이후에 적절한 SQL문 삽입
-            pstmt = conn.prepareStatement("");
+            pstmt = conn.prepareStatement("delete from 창의프로젝트.lodgment where lodgmentID = ?");
+            pstmt.setInt(1, id);
 
             pstmt.executeUpdate();
         }
@@ -459,8 +488,8 @@ public class DBManager
 
         try
         {
-            //TODO: DB 구축 이후에 적절한 SQL문 삽입
-            pstmt = conn.prepareStatement("");
+            pstmt = conn.prepareStatement("delete from 창의프로젝트.restaurant where restaurantID = ?");
+            pstmt.setInt(1, id);
 
             pstmt.executeUpdate();
         }
