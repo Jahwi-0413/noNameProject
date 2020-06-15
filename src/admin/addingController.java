@@ -94,18 +94,16 @@ public class addingController
         String name =tourName.getText();
         String classification = tourClassification.getText();
         String address = tourFullAddress.getText();
-        String city = tourCity.getText();
-        String townShip = tourTownShip.getText();
         String phoneNumber = tourPhoneNumber.getText();
 
         Tour tour;
         if(phoneNumber.equals(""))       //전화번호를 입력하지 않은 경우
         {
-            tour = new Tour(name, classification, address, city, townShip);
+            tour = new Tour(name, classification, address);
         }
         else
             {
-                tour = new Tour(name, classification, address, city, townShip);
+                tour = new Tour(name, classification, address);
                 tour.setPhoneNumber(phoneNumber);
             }
         return tour;
@@ -115,17 +113,15 @@ public class addingController
         String name =restaurantName.getText();
         String menu= restaurantMenu.getText();
         String address = restaurantFullAddress.getText();
-        String city = restaurantCity.getText();
-        String townShip = restaurantTownShip.getText();
         String phoneNum = restaurantPhoneNumber.getText();
 
         Restaurant restaurant;
 
         if(phoneNum.equals(""))       //전화번호를 입력하지 않은 경우
-            restaurant = new Restaurant(name, menu, address, city, townShip);
+            restaurant = new Restaurant(name, menu, address);
         else
         {
-            restaurant=new Restaurant(name,menu, address, city, townShip);
+            restaurant=new Restaurant(name,menu, address);
             restaurant.setPhoneNumber(phoneNum);
         }
         return restaurant;
@@ -135,17 +131,15 @@ public class addingController
         String name =lodgmentName.getText();
         String classification = lodgmentClassification.getText();
         String address = lodgmentFullAddress.getText();
-        String city = lodgmentCity.getText();
-        String townShip = lodgmentTownShip.getText();
         String phoneNum = lodgmentPhoneNumber.getText();
 
         Lodgment lodgment;
 
         if(phoneNum.equals(""))       //전화번호를 입력하지 않은 경우
-           lodgment = new Lodgment(name, classification, address, city, townShip);
+           lodgment = new Lodgment(name, classification, address);
         else
         {
-            lodgment =new Lodgment(name,classification, address, city, townShip);
+            lodgment =new Lodgment(name,classification, address);
             lodgment.setPhoneNumber(phoneNum);
         }
         return lodgment;
