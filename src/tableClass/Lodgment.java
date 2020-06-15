@@ -13,17 +13,17 @@ public class Lodgment implements Serializable    //숙박시설
     private String townShip;    //읍면동
     private String phoneNumber; //전화번호
 
-    public Lodgment(int id, String name, String classification, String address, String city, String townShip)
+    public Lodgment(int id, String name, String classification, String address)
     {
         lodgmentId=id; lodgmentName = name;
         this.classification = classification;
-        fullAddress=address; this.city = city; this.townShip = townShip;
+        fullAddress=address;
     }
-    public Lodgment(String name, String classification, String address, String city, String townShip)
+    public Lodgment(String name, String classification, String address)
     {
         lodgmentName = name;
         this.classification = classification;
-        fullAddress=address; this.city = city; this.townShip = townShip;
+        fullAddress=address;
     }
 
 
@@ -31,15 +31,11 @@ public class Lodgment implements Serializable    //숙박시설
     public String getLodgmentName() {return lodgmentName;}
     public String getClassification() {return classification;}
     public String getFullAddress() {return fullAddress;}
-    public String getCity() {return city;}
-    public String getTownShip() {return townShip;}
     public String getPhoneNumber() {return phoneNumber;}
 
     public void setLodgmentId(int id) {lodgmentId=id;}
     public void setLdogmentName(String name) {lodgmentName=name;}
     public void setClassification(String classification) {this.classification=classification;}
     public void setFullAddress(String address) {fullAddress=address;}
-    public void setCity(String city) {this.city=city;}
-    public void setTownShip(String townShip) {this.townShip = townShip;}
     public void setPhoneNumber(String phoneNum) {phoneNumber=phoneNum;}
 }
