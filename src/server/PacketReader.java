@@ -15,6 +15,7 @@ public class PacketReader {
     {
         boolean result = false;
         Protocol protocol = null;
+        protocol.setPacket(packet);
 
         switch(packet[0])
         {
@@ -25,7 +26,15 @@ public class PacketReader {
                         switch(packet[3])
                         {
                             case Protocol.TAG_TRAVEL:   // 사용자의 관광지 조회
-                                ArrayList<Tour> tourList = db.getTourList();
+                                ArrayList<Tour> tourList = null;
+
+                                if(protocol.getBodyLength() == 0)   // 키워드가 없는 경우 전체 데이터 전송
+                                    tourList = db.getTourList();
+                                else                                // 키워드가 있는 경우 해당 키워드로 검색 후 해당하는 데이터만 전송
+                                {
+                                    String keyword = (String) SerialManager.toObject(protocol.getBody());
+                                    tourList = db.getTourList(keyword);
+                                }
 
                                 if(!tourList.isEmpty())     // 여행지 객체 배열을 전송
                                 {
@@ -33,11 +42,19 @@ public class PacketReader {
                                     protocol = new Protocol(Protocol.PW_USER, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
                                     protocol.setBody(SerialManager.toByteArray(tourArray));
                                 }
-                                else
+                                else                        // 검색 데이터가 없거나, DB 연결에 실패한 경우 FAIL 메시지 전송
                                     protocol = new Protocol(Protocol.PW_USER, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
                                 return protocol.getPacket();
                             case Protocol.TAG_FOOD:     // 사용자의 식당 조회
-                                ArrayList<Restaurant> resList = db.getRestaurantList();
+                                ArrayList<Restaurant> resList = null;
+
+                                if(protocol.getBodyLength() == 0)   // 키워드가 없는 경우 전체 데이터 전송
+                                    resList = db.getRestaurantList();
+                                else                                // 키워드가 있는 경우 해당 키워드로 검색 후 해당하는 데이터만 전송
+                                {
+                                    String keyword = (String) SerialManager.toObject(protocol.getBody());
+                                    resList = db.getRestaurantList(keyword);
+                                }
 
                                 if(!resList.isEmpty())      // 식당 객체 배열을 전송
                                 {
@@ -45,11 +62,19 @@ public class PacketReader {
                                     protocol = new Protocol(Protocol.PW_USER, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
                                     protocol.setBody(SerialManager.toByteArray(resArray));
                                 }
-                                else
+                                else                        // 검색 데이터가 없거나, DB 연결에 실패한 경우 FAIL 메시지 전송
                                     protocol = new Protocol(Protocol.PW_USER, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
                                 return protocol.getPacket();
                             case Protocol.TAG_HOTEL:    // 사용자의 숙소 조회
-                                ArrayList<Lodgment> lodgList = db.getLodgmentList();
+                                ArrayList<Lodgment> lodgList = null;
+
+                                if(protocol.getBodyLength() == 0)   // 키워드가 없는 경우 전체 데이터 전송
+                                    lodgList = db.getLodgmentList();
+                                else                                // 키워드가 있는 경우 해당 키워드로 검색 후 해당하는 데이터만 전송
+                                {
+                                    String keyword = (String) SerialManager.toObject(protocol.getBody());
+                                    lodgList = db.getLodgmentList(keyword);
+                                }
 
                                 if(!lodgList.isEmpty())     // 숙소 객체 배열을 전송
                                 {
@@ -57,7 +82,7 @@ public class PacketReader {
                                     protocol = new Protocol(Protocol.PW_USER, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
                                     protocol.setBody(SerialManager.toByteArray(lodgArray));
                                 }
-                                else
+                                else                        // 검색 데이터가 없거나, DB 연결에 실패한 경우 FAIL 메시지 전송
                                     protocol = new Protocol(Protocol.PW_USER, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
                                 return protocol.getPacket();
                         }
@@ -72,7 +97,15 @@ public class PacketReader {
                         switch(packet[3])
                         {
                             case Protocol.TAG_TRAVEL:   // 관리자의 관광지 조회
-                                ArrayList<Tour> tourList = db.getTourList();
+                                ArrayList<Tour> tourList = null;
+
+                                if(protocol.getBodyLength() == 0)   // 키워드가 없는 경우 전체 데이터 전송
+                                    tourList = db.getTourList();
+                                else                                // 키워드가 있는 경우 해당 키워드로 검색 후 해당하는 데이터만 전송
+                                {
+                                    String keyword = (String) SerialManager.toObject(protocol.getBody());
+                                    tourList = db.getTourList(keyword);
+                                }
 
                                 if(!tourList.isEmpty())     // 여행지 객체 배열을 전송
                                 {
@@ -84,7 +117,15 @@ public class PacketReader {
                                     protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
                                 return protocol.getPacket();
                             case Protocol.TAG_FOOD:     // 관리자의 식당 조회
-                                ArrayList<Restaurant> resList = db.getRestaurantList();
+                                ArrayList<Restaurant> resList = null;
+
+                                if(protocol.getBodyLength() == 0)   // 키워드가 없는 경우 전체 데이터 전송
+                                    resList = db.getRestaurantList();
+                                else                                // 키워드가 있는 경우 해당 키워드로 검색 후 해당하는 데이터만 전송
+                                {
+                                    String keyword = (String) SerialManager.toObject(protocol.getBody());
+                                    resList = db.getRestaurantList(keyword);
+                                }
 
                                 if(!resList.isEmpty())      // 식당 객체 배열을 전송
                                 {
@@ -96,7 +137,15 @@ public class PacketReader {
                                     protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
                                 return protocol.getPacket();
                             case Protocol.TAG_HOTEL:    // 관리자의 숙소 조회
-                                ArrayList<Lodgment> lodgList = db.getLodgmentList();
+                                ArrayList<Lodgment> lodgList = null;
+
+                                if(protocol.getBodyLength() == 0)   // 키워드가 없는 경우 전체 데이터 전송
+                                    lodgList = db.getLodgmentList();
+                                else                                // 키워드가 있는 경우 해당 키워드로 검색 후 해당하는 데이터만 전송
+                                {
+                                    String keyword = (String) SerialManager.toObject(protocol.getBody());
+                                    lodgList = db.getLodgmentList(keyword);
+                                }
 
                                 if(!lodgList.isEmpty())     // 숙소 객체 배열을 전송
                                 {
@@ -114,7 +163,6 @@ public class PacketReader {
                         {
                             case Protocol.TAG_TRAVEL:   // 관리자의 관광지 추가
                                 Tour tour = null;
-                                protocol.setPacket(packet);
                                 byte[] temp = protocol.getBody();
                                 tour = (Tour) SerialManager.toObject(temp);
 
@@ -125,7 +173,6 @@ public class PacketReader {
                                 return protocol.getPacket();
                             case Protocol.TAG_FOOD:     // 관리자의 식당 추가
                                 Restaurant res = null;
-                                protocol.setPacket(packet);
                                 temp = protocol.getBody();
                                 res = (Restaurant) SerialManager.toObject(temp);
 
@@ -136,7 +183,6 @@ public class PacketReader {
                                 return protocol.getPacket();
                             case Protocol.TAG_HOTEL:    // 관리자의 숙소 추가
                                 Lodgment lodg = null;
-                                protocol.setPacket(packet);
                                 temp = protocol.getBody();
                                 lodg = (Lodgment) SerialManager.toObject(temp);
 
@@ -152,7 +198,6 @@ public class PacketReader {
                         {
                             case Protocol.TAG_TRAVEL:   // 관리자의 관광지 삭제
                                 Tour tour = null;
-                                protocol.setPacket(packet);
                                 byte[] temp = protocol.getBody();
                                 tour = (Tour) SerialManager.toObject(temp);
 
@@ -163,7 +208,6 @@ public class PacketReader {
                                 return protocol.getPacket();
                             case Protocol.TAG_FOOD:     // 관리자의 식당 삭제
                                 Restaurant res = null;
-                                protocol.setPacket(packet);
                                 temp = protocol.getBody();
                                 res = (Restaurant) SerialManager.toObject(temp);
 
@@ -174,7 +218,6 @@ public class PacketReader {
                                 return protocol.getPacket();
                             case Protocol.TAG_HOTEL:    // 관리자의 숙소 삭제
                                 Lodgment lodg = null;
-                                protocol.setPacket(packet);
                                 temp = protocol.getBody();
                                 lodg = (Lodgment) SerialManager.toObject(temp);
 
