@@ -36,7 +36,6 @@ public class PacketReader {
                                 else
                                     protocol = new Protocol(Protocol.PW_USER, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
                                 return protocol.getPacket();
-                                break;
                             case Protocol.TAG_FOOD:     // 사용자의 식당 조회
                                 ArrayList<Restaurant> resList = db.getRestaurantList();
 
@@ -49,7 +48,6 @@ public class PacketReader {
                                 else
                                     protocol = new Protocol(Protocol.PW_USER, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
                                 return protocol.getPacket();
-                                break;
                             case Protocol.TAG_HOTEL:    // 사용자의 숙소 조회
                                 ArrayList<Lodgment> lodgList = db.getLodgmentList();
 
@@ -62,7 +60,6 @@ public class PacketReader {
                                 else
                                     protocol = new Protocol(Protocol.PW_USER, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
                                 return protocol.getPacket();
-                                break;
                         }
                         break;
                     // 사용자는 조회 이외의 작업 요청할 수 없으니 나머지 동작은 없음
@@ -86,7 +83,6 @@ public class PacketReader {
                                 else
                                     protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
                                 return protocol.getPacket();
-                                break;
                             case Protocol.TAG_FOOD:     // 관리자의 식당 조회
                                 ArrayList<Restaurant> resList = db.getRestaurantList();
 
@@ -99,7 +95,6 @@ public class PacketReader {
                                 else
                                     protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
                                 return protocol.getPacket();
-                                break;
                             case Protocol.TAG_HOTEL:    // 관리자의 숙소 조회
                                 ArrayList<Lodgment> lodgList = db.getLodgmentList();
 
@@ -112,7 +107,6 @@ public class PacketReader {
                                 else
                                     protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
                                 return protocol.getPacket();
-                                break;
                         }
                         break;
                     case Protocol.REQ_ADD:      // 관리자가 추가요청
@@ -129,47 +123,72 @@ public class PacketReader {
                                 if(result) protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
                                 else protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
                                 return protocol.getPacket();
-                                break;
                             case Protocol.TAG_FOOD:     // 관리자의 식당 추가
                                 Restaurant res = null;
                                 protocol.setPacket(packet);
                                 temp = protocol.getBody();
                                 res = (Restaurant) SerialManager.toObject(temp);
+
                                 result = db.addRestaurant(res);
 
                                 if(result) protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
                                 else protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
                                 return protocol.getPacket();
-                                break;
                             case Protocol.TAG_HOTEL:    // 관리자의 숙소 추가
                                 Lodgment lodg = null;
                                 protocol.setPacket(packet);
                                 temp = protocol.getBody();
                                 lodg = (Lodgment) SerialManager.toObject(temp);
+
                                 result = db.addLodgment(lodg);
 
                                 if(result) protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
                                 else protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
                                 return protocol.getPacket();
-                                break;
                         }
                         break;
                     case Protocol.REQ_DEL:      // 관리자가 삭제요청
                         switch(packet[3])
                         {
                             case Protocol.TAG_TRAVEL:   // 관리자의 관광지 삭제
-                                //TODO: 이곳에 동작 기술
-                                break;
+                                Tour tour = null;
+                                protocol.setPacket(packet);
+                                byte[] temp = protocol.getBody();
+                                tour = (Tour) SerialManager.toObject(temp);
+
+                                result = db.deleteTour(tour.getTourId());
+
+                                if(result) protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
+                                else protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
+                                return protocol.getPacket();
                             case Protocol.TAG_FOOD:     // 관리자의 식당 삭제
-                                //TODO: 이곳에 동작 기술
-                                break;
+                                Restaurant res = null;
+                                protocol.setPacket(packet);
+                                temp = protocol.getBody();
+                                res = (Restaurant) SerialManager.toObject(temp);
+
+                                result = db.deleteTour(res.getRestaurantId());
+
+                                if(result) protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
+                                else protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
+                                return protocol.getPacket();
                             case Protocol.TAG_HOTEL:    // 관리자의 숙소 삭제
-                                //TODO: 이곳에 동작 기술
-                                break;
+                                Lodgment lodg = null;
+                                protocol.setPacket(packet);
+                                temp = protocol.getBody();
+                                lodg = (Lodgment) SerialManager.toObject(temp);
+
+                                result = db.deleteTour(lodg.getLodgmentId());
+
+                                if(result) protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
+                                else protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
+                                return protocol.getPacket();
                         }
                         break;
                 }
                 break;
         }
+
+        return null;
     }
 }

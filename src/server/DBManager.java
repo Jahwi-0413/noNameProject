@@ -255,4 +255,97 @@ public class DBManager
         }
         return true;
     }
+
+    public boolean deleteTour(int id)
+    {
+        PreparedStatement pstmt = null;
+
+        try
+        {
+            //TODO: DB 구축 이후에 적절한 SQL문 삽입
+            pstmt = conn.prepareStatement("");
+
+            pstmt.executeUpdate();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        finally
+        {
+            try
+            {
+                pstmt.close();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        return true;
+    }
+
+    public boolean deleteLodgment(int id)
+    {
+        PreparedStatement pstmt = null;
+
+        try
+        {
+            //TODO: DB 구축 이후에 적절한 SQL문 삽입
+            pstmt = conn.prepareStatement("");
+
+            pstmt.executeUpdate();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        finally
+        {
+            try
+            {
+                pstmt.close();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        return true;
+    }
+
+    public boolean deleteRestaurant(int id)
+    {
+        PreparedStatement pstmt = null;
+
+        try
+        {
+            //TODO: DB 구축 이후에 적절한 SQL문 삽입
+            pstmt = conn.prepareStatement("");
+
+            pstmt.executeUpdate();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        finally
+        {
+            try
+            {
+                pstmt.close();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        return true;
+    }
 }
