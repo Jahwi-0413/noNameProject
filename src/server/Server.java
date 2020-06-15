@@ -3,9 +3,8 @@ package server;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Arrays;
 
-import server.*;
+import communicate.Protocol;
 
 public class Server
 {

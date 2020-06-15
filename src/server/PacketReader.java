@@ -1,7 +1,9 @@
 package server;
 
-import server.Protocol;
+import communicate.Protocol;
 import java.util.*;
+
+import communicate.SerialManager;
 import tableClass.*;
 
 // 패킷을 분석해서 적절한 작업으로 연결해주는 클래스
@@ -25,10 +27,11 @@ public class PacketReader {
                             case Protocol.TAG_TRAVEL:   // 사용자의 관광지 조회
                                 ArrayList<Tour> tourList = db.getTourList();
 
-                                if(!tourList.isEmpty())
+                                if(!tourList.isEmpty())     // 여행지 객체 배열을 전송
                                 {
-                                    //TODO: list를 출력함수로 넘겨서 출력
+                                    Tour[] tourArray = (Tour[]) tourList.toArray();
                                     protocol = new Protocol(Protocol.PW_USER, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
+                                    protocol.setBody(SerialManager.toByteArray(tourArray));
                                 }
                                 else
                                     protocol = new Protocol(Protocol.PW_USER, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
@@ -37,10 +40,11 @@ public class PacketReader {
                             case Protocol.TAG_FOOD:     // 사용자의 식당 조회
                                 ArrayList<Restaurant> resList = db.getRestaurantList();
 
-                                if(!resList.isEmpty())
+                                if(!resList.isEmpty())      // 식당 객체 배열을 전송
                                 {
-                                    //TODO: list를 출력함수로 넘겨서 출력
+                                    Restaurant[] resArray = (Restaurant[]) resList.toArray();
                                     protocol = new Protocol(Protocol.PW_USER, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
+                                    protocol.setBody(SerialManager.toByteArray(resArray));
                                 }
                                 else
                                     protocol = new Protocol(Protocol.PW_USER, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
@@ -49,10 +53,11 @@ public class PacketReader {
                             case Protocol.TAG_HOTEL:    // 사용자의 숙소 조회
                                 ArrayList<Lodgment> lodgList = db.getLodgmentList();
 
-                                if(!lodgList.isEmpty())
+                                if(!lodgList.isEmpty())     // 숙소 객체 배열을 전송
                                 {
-                                    //TODO: list를 출력함수로 넘겨서 출력
+                                    Lodgment[] lodgArray = (Lodgment[]) lodgList.toArray();
                                     protocol = new Protocol(Protocol.PW_USER, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
+                                    protocol.setBody(SerialManager.toByteArray(lodgArray));
                                 }
                                 else
                                     protocol = new Protocol(Protocol.PW_USER, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
@@ -72,10 +77,11 @@ public class PacketReader {
                             case Protocol.TAG_TRAVEL:   // 관리자의 관광지 조회
                                 ArrayList<Tour> tourList = db.getTourList();
 
-                                if(!tourList.isEmpty())
+                                if(!tourList.isEmpty())     // 여행지 객체 배열을 전송
                                 {
-                                    //TODO: list를 출력함수로 넘겨서 출력
+                                    Tour[] tourArray = (Tour[]) tourList.toArray();
                                     protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
+                                    protocol.setBody(SerialManager.toByteArray(tourArray));
                                 }
                                 else
                                     protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
@@ -84,10 +90,11 @@ public class PacketReader {
                             case Protocol.TAG_FOOD:     // 관리자의 식당 조회
                                 ArrayList<Restaurant> resList = db.getRestaurantList();
 
-                                if(!tourList.isEmpty())
+                                if(!resList.isEmpty())      // 식당 객체 배열을 전송
                                 {
-                                    //TODO: list를 출력함수로 넘겨서 출력
+                                    Restaurant[] resArray = (Restaurant[]) resList.toArray();
                                     protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
+                                    protocol.setBody(SerialManager.toByteArray(resArray));
                                 }
                                 else
                                     protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
@@ -96,10 +103,11 @@ public class PacketReader {
                             case Protocol.TAG_HOTEL:    // 관리자의 숙소 조회
                                 ArrayList<Lodgment> lodgList = db.getLodgmentList();
 
-                                if(!tourList.isEmpty())
+                                if(!lodgList.isEmpty())     // 숙소 객체 배열을 전송
                                 {
-                                    //TODO: list를 출력함수로 넘겨서 출력
+                                    Lodgment[] lodgArray = (Lodgment[]) lodgList.toArray();
                                     protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
+                                    protocol.setBody(SerialManager.toByteArray(lodgArray));
                                 }
                                 else
                                     protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
@@ -111,7 +119,11 @@ public class PacketReader {
                         switch(packet[3])
                         {
                             case Protocol.TAG_TRAVEL:   // 관리자의 관광지 추가
-                                Tour tour = null;  //TODO: 패킷에서 바디부분 분리해서 역직렬화
+                                Tour tour = null;
+                                protocol.setPacket(packet);
+                                byte[] temp = protocol.getBody();
+                                tour = (Tour) SerialManager.toObject(temp);
+
                                 result = db.addTour(tour);
 
                                 if(result) protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
@@ -119,7 +131,10 @@ public class PacketReader {
                                 return protocol.getPacket();
                                 break;
                             case Protocol.TAG_FOOD:     // 관리자의 식당 추가
-                                Restaurant res = null;  //TODO: 패킷에서 바디부분 분리해서 역직렬화
+                                Restaurant res = null;
+                                protocol.setPacket(packet);
+                                temp = protocol.getBody();
+                                res = (Restaurant) SerialManager.toObject(temp);
                                 result = db.addRestaurant(res);
 
                                 if(result) protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
@@ -127,7 +142,10 @@ public class PacketReader {
                                 return protocol.getPacket();
                                 break;
                             case Protocol.TAG_HOTEL:    // 관리자의 숙소 추가
-                                Lodgment lodg = null;   //TODO: 패킷에서 바디부분 분리해서 역직렬화
+                                Lodgment lodg = null;
+                                protocol.setPacket(packet);
+                                temp = protocol.getBody();
+                                lodg = (Lodgment) SerialManager.toObject(temp);
                                 result = db.addLodgment(lodg);
 
                                 if(result) protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
