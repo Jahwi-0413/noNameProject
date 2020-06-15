@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="창의프로젝트@116.127.156.46" uuid="0302d82d-0f4d-46f3-a84c-01de198ec08a">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://116.127.156.46:3306/창의프로젝트?characterEncoding=UTF-8&amp;serverTimezone=UTC</jdbc-url>
+    </data-source>
+  </component>
+</project>
