@@ -1,4 +1,4 @@
-package server;
+package communicate;
 
 public class Protocol
 {
