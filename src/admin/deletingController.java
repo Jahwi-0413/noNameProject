@@ -27,10 +27,7 @@ public class deletingController implements Initializable
 {
     @FXML
     private Button deleteTourBtn, deleteRestrantBtn, deleteLodgmentBtn;     //관광지, 음식점, 숙박 버튼
-    @FXML
-    private Button deleteSearchBtn; //검색 버튼
-    @FXML
-    private Button deleteBtn;       //삭제 버튼
+
     @FXML
     private TextField deleteTextField;  //검색할 text field
     //---------------------------------------------------------------------------------
@@ -66,9 +63,6 @@ public class deletingController implements Initializable
     private TableColumn<Lodgment,String> lodgmentFullAddress;
     @FXML
     private TableColumn<Lodgment,String> lodgmentPhoneNumber;
-
-//    private ObservableArray<Restaurant> restaurantList = (Restaurant)FXCollections.observableArrayList();
-//    private ObservableArray<Lodgment> lodgmentList = (Lodgment)FXCollections.observableArrayList();
 
     private Stage thisStage;
     private static int tourClicked=0, restaurantClicked=0,lodgmentClicked=0;  //어떤 버튼이 눌렸는지 확인하는 값 0이면 안눌림, 1이면 눌림
@@ -218,20 +212,37 @@ public class deletingController implements Initializable
     //--------------------------------------------------------------------------------------------------------------------------
     //삭제 요청 관련련
 
-    public void clickDelete()
+    public void clickDelete() throws IOException
     {
         if(tourClicked==1)  //관광지 정보 삭제시
         {
-            //선택된거 들고와서
-            //서버로 삭제 요청을 보낸다
+            Tour tour = tourTableView.getSelectionModel().getSelectedItem();
+            AdminServerConnector.getPacketManager().deleteRequest(TAG_TRAVEL, tour);
         }
         else if(restaurantClicked==1)   //음식점 정보 삭제시
         {
-
+            Restaurant restaurant = restaurantTableView.getSelectionModel().getSelectedItem();
+            AdminServerConnector.getPacketManager().deleteRequest(TAG_FOOD,restaurant);
         }
         else if(lodgmentClicked==1) // 숙박업소 정보 삭제시
         {
+            Lodgment lodgment = lodgmentTableView.getSelectionModel().getSelectedItem();
+            AdminServerConnector.getPacketManager().deleteRequest(TAG_HOTEL,lodgment);
         }
+        AdminServerConnector.getPacketManager().packetRead(); //요청에 대한 응답을 받음
+        if(AdminServerConnector.getPacketManager().packetTranslate())   //응답이 성공이면
+        {
+            alertMessage("성공","삭제 성공");
+            if(tourClicked==1)
+                settingWindow("tour");
+            else if(restaurantClicked==1)
+                settingWindow("restaurant");
+            else if(lodgmentClicked==1)
+                settingWindow("lodgment");
+
+        }
+        else
+            alertMessage("실패", "삭제 실패");
     }
 
     public void alertMessage(String result, String msg) //패킷 내용에 따른 경고?창 생성
