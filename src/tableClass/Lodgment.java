@@ -1,8 +1,10 @@
 package tableClass;
 
+import javafx.collections.ObservableArray;
+
 import java.io.*;
 
-public class Lodgment implements Serializable    //숙박시설
+public class Lodgment implements Serializable//, ObservableArray<Lodgment>    //숙박시설
 {
     private static final long serialVersionUID = 3L;
     private int lodgmentId;      //ai id

@@ -1,7 +1,10 @@
 package admin;
 
 import communicate.Protocol;
+import communicate.SerialManager;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,6 +17,7 @@ import tableClass.Restaurant;
 import tableClass.Tour;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static communicate.Protocol.*;
 
@@ -29,17 +33,18 @@ public class deletingController
     @FXML
     private TextField deleteTextField;  //검색할 text field
     @FXML
-    private CheckBox deleteGumiCheck, deleteDaeguCheck; //구미, 대구 체크박스
-    @FXML
     private TableView<Tour> tourTableView;      //관광지 정보를 담는 테이블뷰
     @FXML
     private TableView<Restaurant> restaurantTableView;  // 음식점 정보를 담는 테이블뷰
     @FXML
     private TableView<Lodgment> lodgmentTableView;  //숙박 정보를 담는 테이블
 
+//    private ObservableArray<Tour> tourList = (Tour)FXCollections.observableArrayList();
+//    private ObservableArray<Restaurant> restaurantList = (Restaurant)FXCollections.observableArrayList();
+//    private ObservableArray<Lodgment> lodgmentList = (Lodgment)FXCollections.observableArrayList();
 
     private Stage thisStage;
-    private int tourClicked=0, restaurantClicked=0,lodgmentClicked=0;  //어떤 버튼이 눌렸는지 확인하는 값 0이면 안눌림, 1이면 눌림
+    private static int tourClicked=0, restaurantClicked=0,lodgmentClicked=0;  //어떤 버튼이 눌렸는지 확인하는 값 0이면 안눌림, 1이면 눌림
 
     //--------------------------------------------------------------------------------------------------------------------------
     //화면 셋팅 관련
@@ -125,7 +130,19 @@ public class deletingController
         Protocol pt = AdminServerConnector.getPacketManager().packetRead();
         if(AdminServerConnector.getPacketManager().packetTranslate())   //요청 성공인 경우
         {
-            //
+            Object[] objList = SerialManager.toObjectArr(pt.getBody());
+            if(tourClicked==1)
+            {
+                Tour[] tourArray = (Tour[])objList;
+                for(int i = 0;i<objList.length; i++)
+                {
+                    tourTableView.getItems().add(tourArray[i]);
+                }
+            }
+        }
+        else        //요청 실패인 경우
+        {
+            alertMessage("실패", "정보를 불러오지 못했습니다");
         }
     }
 
