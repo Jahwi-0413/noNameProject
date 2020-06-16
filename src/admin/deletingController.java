@@ -2,9 +2,7 @@ package admin;
 
 import communicate.Protocol;
 import communicate.SerialManager;
-import javafx.application.Application;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,17 +11,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import tableClass.Lodgment;
 import tableClass.Restaurant;
 import tableClass.Tour;
-
-import javax.swing.event.ChangeListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import static communicate.Protocol.*;
@@ -43,12 +37,24 @@ public class deletingController implements Initializable
     @FXML
     private TableView<Tour> tourTableView ;      //관광지 정보를 담는 테이블뷰
     @FXML
-    private TableColumn<Tour,String> tourName,tourClassification,tourFullAddress,tourPhoneNumber;
+    private TableColumn<Tour,String> tourName;
+    @FXML
+    private TableColumn<Tour,String> tourClassification;
+    @FXML
+    private TableColumn<Tour,String> tourFullAddress;
+    @FXML
+    private TableColumn<Tour,String> tourPhoneNumber;
     //---------------------------------------------------------------------------------
     @FXML
     private TableView<Restaurant> restaurantTableView;  // 음식점 정보를 담는 테이블뷰
     @FXML
-    private TableColumn<Restaurant,String> restaurantName, mainMenu,restaurantFullAddress,restaurantPhoneNumber;
+    private TableColumn<Restaurant,String> restaurantName;
+    @FXML
+    private TableColumn<Restaurant,String>mainMenu;
+    @FXML
+    private TableColumn<Restaurant,String>restaurantFullAddress;
+    @FXML
+    private TableColumn<Restaurant,String>restaurantPhoneNumber;
     //---------------------------------------------------------------------------------
     @FXML
     private TableView<Lodgment> lodgmentTableView;  //숙박 정보를 담는 테이블
@@ -153,17 +159,15 @@ public class deletingController implements Initializable
             Object[] objList = SerialManager.toObjectArr(pt.getBody());
             if(tourClicked==1)
             {
-                tourName.setCellValueFactory(new PropertyValueFactory<>("tourName"));
-                tourPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("tourPhoneNumber"));
-//              tourClassification.setCellValueFactory(new PropertyValueFactory<>("tourClassification"));
-//              tourFullAddress.setCellValueFactory(new PropertyValueFactory<>("tourFullAddress"));
+                tourName.setCellValueFactory(new PropertyValueFactory<>("tourName"));       //사용 클래스의 멤버변수명이랑 같아야됨
+                tourClassification.setCellValueFactory(new PropertyValueFactory<>("classification"));
+                tourFullAddress.setCellValueFactory(new PropertyValueFactory<>("fullAddress"));
+                tourPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
                 Tour[] tourArray = (Tour[])objList;
                 ArrayList<Tour> list = new ArrayList();
                 for(int i = 0;i<tourArray.length; i++)
                 {
                     list.add(tourArray[i]);
-//                    System.out.println(tourArray[i].getTourName());
-//                    System.out.println(list.get(i).getTourName());
                 }
                 ObservableList<Tour> arraylist = FXCollections.observableArrayList(list);
                 tourTableView.setItems(arraylist);
@@ -172,23 +176,23 @@ public class deletingController implements Initializable
             {
                 restaurantName.setCellValueFactory(new PropertyValueFactory<>("restaurantName"));
                 mainMenu.setCellValueFactory(new PropertyValueFactory<>("mainMenu"));
-                restaurantFullAddress.setCellValueFactory(new PropertyValueFactory<>("restaurantFullAddress"));
-                restaurantPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("restaurantPhoneNumber"));
+                restaurantFullAddress.setCellValueFactory(new PropertyValueFactory<>("fullAddress"));
+                restaurantPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
                 Restaurant[] restaurantArray = (Restaurant[])objList;
-                ArrayList<Restaurant> list = new ArrayList();
+                ArrayList<Restaurant> reslist = new ArrayList();
                 for(int i=0;i<restaurantArray.length;i++)
                 {
-                    list.add(restaurantArray[i]);
+                    reslist.add(restaurantArray[i]);
 
                 }
-                ObservableList<Restaurant>  arraylist = FXCollections.observableArrayList(list);
+                ObservableList<Restaurant>  arraylist = FXCollections.observableArrayList(reslist);
                 restaurantTableView.setItems(arraylist);
             }
             else if(lodgmentClicked==1)
             {
                 lodgmentName.setCellValueFactory(new PropertyValueFactory<>("lodgmentName"));
                 lodgmentClassification.setCellValueFactory(new PropertyValueFactory<>("lodgmentClassification"));
-                lodgmentFullAddress.setCellValueFactory();
+                //lodgmentFullAddress.setCellValueFactory();
                 Lodgment[] lodgArray = (Lodgment[])objList;
                 ArrayList<Lodgment> list = new ArrayList();
                 for(int i=0;i<lodgArray.length;i++)

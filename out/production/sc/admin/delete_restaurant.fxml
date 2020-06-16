@@ -34,7 +34,7 @@
                 <TableColumn id="restaurantName" prefWidth="121.0" text="가게 이름" />
                 <TableColumn id="mainMenu" prefWidth="121.0" text="주메뉴" />
                   <TableColumn id="restaurantFullAddress" prefWidth="353.0" text="소재지" />
-                  <TableColumn prefWidth="204.0" text="전화번호" />
+                  <TableColumn id="restaurantPhoneNumber" prefWidth="204.0" text="전화번호" />
               </columns>
             </TableView>
          </children></Pane>
