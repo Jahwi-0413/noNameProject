@@ -10,11 +10,10 @@ public class AdminServerConnector
     public static void setPacketManager(PacketManager manager)
     {
         packetManager = manager;
-        System.out.println("set");
     }
     public static PacketManager getPacketManager()
     {
-        System.out.println("get");
         return packetManager;
     }
+
 }

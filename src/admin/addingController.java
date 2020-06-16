@@ -55,9 +55,7 @@ public class addingController
     }
     public void clickAddLodg() throws IOException     // 숙박 버튼을 눌렀을 때
     {
-        tourClicked=0;
-        lodgmentClicked=1;
-        restaurantClicked=0;
+        tourClicked=0; lodgmentClicked=1; restaurantClicked=0;
 
         Stage stage=(Stage)addLodgmentBtn.getScene().getWindow();   //addLodgmentBtn을 포함한 stage
         thisStage=stage;

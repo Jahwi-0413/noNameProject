@@ -45,6 +45,13 @@ public class PacketManager
         }
     }
 
+//    public Protocol packetRead()
+//    {
+//        if(!isSet)
+//        {
+//            reader.read()
+//        }
+//    }
     // 검색 요청, 매개변수는 Protocol의 static 상수로 지정해주세용
     // power는 Protocol.PW_USER or ADMIN, op는 Protocol.TAG_HOTEL or FOOD or TRAVEL
     public void searchRequest(int power, int op)    // 권한과 검색 대상(숙박 or 여행지 or 식당)
