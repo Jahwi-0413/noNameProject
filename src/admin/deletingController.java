@@ -50,16 +50,22 @@ public class deletingController implements Initializable
     @FXML
     private TableColumn<Restaurant,String> restaurantName;
     @FXML
-    private TableColumn<Restaurant,String>mainMenu;
+    private TableColumn<Restaurant,String> mainMenu;
     @FXML
-    private TableColumn<Restaurant,String>restaurantFullAddress;
+    private TableColumn<Restaurant,String> restaurantFullAddress;
     @FXML
-    private TableColumn<Restaurant,String>restaurantPhoneNumber;
+    private TableColumn<Restaurant,String> restaurantPhoneNumber;
     //---------------------------------------------------------------------------------
     @FXML
     private TableView<Lodgment> lodgmentTableView;  //숙박 정보를 담는 테이블
     @FXML
-    private TableColumn<Lodgment,String> lodgmentName, lodgmentClassification, lodgmentFullAddress,lodgmentPhoneNumber;
+    private TableColumn<Lodgment,String> lodgmentName;
+    @FXML
+    private TableColumn<Lodgment,String> lodgmentClassification;
+    @FXML
+    private TableColumn<Lodgment,String> lodgmentFullAddress;
+    @FXML
+    private TableColumn<Lodgment,String> lodgmentPhoneNumber;
 
 //    private ObservableArray<Restaurant> restaurantList = (Restaurant)FXCollections.observableArrayList();
 //    private ObservableArray<Lodgment> lodgmentList = (Lodgment)FXCollections.observableArrayList();
@@ -175,7 +181,7 @@ public class deletingController implements Initializable
             else if(restaurantClicked==1)
             {
                 restaurantName.setCellValueFactory(new PropertyValueFactory<>("restaurantName"));
-                mainMenu.setCellValueFactory(new PropertyValueFactory<>("mainMenu"));
+                mainMenu.setCellValueFactory(new PropertyValueFactory<>("menu"));
                 restaurantFullAddress.setCellValueFactory(new PropertyValueFactory<>("fullAddress"));
                 restaurantPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
                 Restaurant[] restaurantArray = (Restaurant[])objList;
@@ -185,14 +191,15 @@ public class deletingController implements Initializable
                     reslist.add(restaurantArray[i]);
 
                 }
-                ObservableList<Restaurant>  arraylist = FXCollections.observableArrayList(reslist);
+                ObservableList<Restaurant> arraylist = FXCollections.observableArrayList(reslist);
                 restaurantTableView.setItems(arraylist);
             }
             else if(lodgmentClicked==1)
             {
                 lodgmentName.setCellValueFactory(new PropertyValueFactory<>("lodgmentName"));
-                lodgmentClassification.setCellValueFactory(new PropertyValueFactory<>("lodgmentClassification"));
-                //lodgmentFullAddress.setCellValueFactory();
+                lodgmentClassification.setCellValueFactory(new PropertyValueFactory<>("classification"));
+                lodgmentFullAddress.setCellValueFactory(new PropertyValueFactory<>("fullAddress"));
+                lodgmentPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
                 Lodgment[] lodgArray = (Lodgment[])objList;
                 ArrayList<Lodgment> list = new ArrayList();
                 for(int i=0;i<lodgArray.length;i++)

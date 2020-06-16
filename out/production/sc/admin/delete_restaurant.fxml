@@ -31,10 +31,10 @@
          <children>
             <TableView fx:id="restaurantTableView" layoutX="25.0" layoutY="14.0" prefHeight="350.0" prefWidth="800.0" style="-fx-background-color: white;">
               <columns>
-                <TableColumn id="restaurantName" prefWidth="121.0" text="가게 이름" />
-                <TableColumn id="mainMenu" prefWidth="121.0" text="주메뉴" />
-                  <TableColumn id="restaurantFullAddress" prefWidth="353.0" text="소재지" />
-                  <TableColumn id="restaurantPhoneNumber" prefWidth="204.0" text="전화번호" />
+                <TableColumn fx:id="restaurantName" prefWidth="121.0" text="가게 이름" />
+                <TableColumn fx:id="mainMenu" prefWidth="121.0" text="주메뉴" />
+                  <TableColumn fx:id="restaurantFullAddress" prefWidth="353.0" text="소재지" />
+                  <TableColumn fx:id="restaurantPhoneNumber" prefWidth="204.0" text="전화번호" />
               </columns>
             </TableView>
          </children></Pane>
