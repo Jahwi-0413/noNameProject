@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<!-- onAction="#clickDeleteTour"    onAction="#clickDeleteRestrant"     onAction="#clickDeleteLodg"       onAction="#clickDelete"-->
+
+<AnchorPane prefHeight="500.0" prefWidth="850.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.tableTest">
+   <children>
+      <Pane prefHeight="70.0" prefWidth="850.0" style="-fx-background-color: #83dcb7;">
+         <children>
+            <Button fx:id="deleteTourBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #83dcb7; -fx-border-color: white;" text="관광지" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="deleteRestrantBtn" layoutX="119.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #83dcb7; -fx-border-color: white;" text="음식점" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="deleteLodgmentBtn" layoutX="222.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #83dcb7; -fx-border-color: white;" text="숙박" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <TextField fx:id="deleteTextField" layoutX="330.0" layoutY="16.0" prefHeight="40.0" prefWidth="426.0" />
+            <Button fx:id="deleteSearchBtn" layoutX="770.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickDeleteSearch" prefHeight="40.0" style="-fx-background-color: #83dcb7; -fx-border-color: white;" text="검색" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+         </children>
+      </Pane>
+      <Pane fx:id="deleteContentPane" layoutY="75.0" prefHeight="350.0" prefWidth="850.0">
+         <children>
+            <TableView fx:id="tourTableView" layoutX="25.0" layoutY="14.0" prefHeight="350.0" prefWidth="800.0" style="-fx-background-color: white;">
+              <columns>
+                <TableColumn id="tourName" fx:id="tourName" prefWidth="121.0" text="관광지명" />
+                  <TableColumn id="tourPhoneNumber" fx:id="tourPhoneNumber" prefWidth="204.0" text="전화번호" />
+              </columns>
+            </TableView>
+         </children></Pane>
+      <Button fx:id="deleteBtn" layoutX="391.0" layoutY="437.0" mnemonicParsing="false" style="-fx-background-color: #83dcb7;" text="삭제" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+   </children>
+</AnchorPane>

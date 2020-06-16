@@ -5,24 +5,31 @@ import communicate.SerialManager;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import tableClass.Lodgment;
 import tableClass.Restaurant;
 import tableClass.Tour;
 
+import javax.swing.event.ChangeListener;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 import static communicate.Protocol.*;
 
 
-public class deletingController
+public class deletingController implements Initializable
 {
     @FXML
     private Button deleteTourBtn, deleteRestrantBtn, deleteLodgmentBtn;     //관광지, 음식점, 숙박 버튼
@@ -33,19 +40,32 @@ public class deletingController
     @FXML
     private TextField deleteTextField;  //검색할 text field
     @FXML
-    private TableView<Tour> tourTableView;      //관광지 정보를 담는 테이블뷰
+    private TableView<Tour> tourTableView ;      //관광지 정보를 담는 테이블뷰
+    @FXML
+    private TableColumn<Tour,String> tourName = new TableColumn<>("tourName");
+    @FXML
+    private TableColumn<Tour,String> tourClassification =new TableColumn<>("tourClassification");
+    @FXML
+    private TableColumn<Tour, String> tourFullAddress = new TableColumn<>("tourFullAddress");
+    @FXML
+    private TableColumn<Tour, String> tourPhoneNumber = new TableColumn<>("tourPhoneNumber");
+
     @FXML
     private TableView<Restaurant> restaurantTableView;  // 음식점 정보를 담는 테이블뷰
     @FXML
     private TableView<Lodgment> lodgmentTableView;  //숙박 정보를 담는 테이블
 
-//    private ObservableArray<Tour> tourList = (Tour)FXCollections.observableArrayList();
 //    private ObservableArray<Restaurant> restaurantList = (Restaurant)FXCollections.observableArrayList();
 //    private ObservableArray<Lodgment> lodgmentList = (Lodgment)FXCollections.observableArrayList();
 
     private Stage thisStage;
     private static int tourClicked=0, restaurantClicked=0,lodgmentClicked=0;  //어떤 버튼이 눌렸는지 확인하는 값 0이면 안눌림, 1이면 눌림
 
+    @Override
+    public void initialize(URL location, ResourceBundle bundle)
+    {
+
+    }
     //--------------------------------------------------------------------------------------------------------------------------
     //화면 셋팅 관련
 
@@ -97,7 +117,7 @@ public class deletingController
     public void clickDeleteSearch()     //검색 버튼을 눌렀을 때
     {
         String keyWord = deleteTextField.getText(); //검색어를 들고온다
-        if(keyWord.equals(null)==false) //키워드를 입력한 경우
+        if(keyWord.equals("")) //키워드를 입력한 경우
         {
             if(tourClicked==1)
             {
@@ -134,10 +154,16 @@ public class deletingController
             if(tourClicked==1)
             {
                 Tour[] tourArray = (Tour[])objList;
-                for(int i = 0;i<objList.length; i++)
+                ArrayList<Tour> list = new ArrayList();
+                for(int i = 0;i<tourArray.length; i++)
                 {
-                    tourTableView.getItems().add(tourArray[i]);
+                    list.add(tourArray[i]);
+                    System.out.println(tourArray[i].getTourName());
+                    System.out.println(list.get(i).getTourName());
                 }
+                ObservableList<Tour> arraylist = FXCollections.observableArrayList(list);
+                tourTableView.setItems(arraylist);
+
             }
         }
         else        //요청 실패인 경우
@@ -145,7 +171,6 @@ public class deletingController
             alertMessage("실패", "정보를 불러오지 못했습니다");
         }
     }
-
     //--------------------------------------------------------------------------------------------------------------------------
     //삭제 요청 관련련
 

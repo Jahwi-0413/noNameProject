@@ -1,11 +1,12 @@
 package tableClass;
 
+import javafx.beans.InvalidationListener;
+import javafx.collections.ArrayChangeListener;
 import javafx.collections.ObservableArray;
 
 import java.io.*;
 
-public class Tour implements Serializable
-{
+public class Tour implements Serializable {
     private static final long serialVersionUID = 1L;
     private int tourId;          //관광지 id
     private String tourName;        //관광지 이름
@@ -39,4 +40,5 @@ public class Tour implements Serializable
     public void setClassification(String classification) {this.classification=classification;}
     public void setFullAddress(String address) {fullAddress=address;}
     public void setPhoneNumber(String phoneNum) {phoneNumber=phoneNum;}
+
 }
