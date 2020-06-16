@@ -318,13 +318,12 @@ public class DBManager
         try
         {
             pstmt = conn.prepareStatement("insert into 창의프로젝트.tour " +
-                    "('tourID', 'tourName', 'classification', 'fullAddress', 'phoneNumber') " +
-                    "values (?, ?, ?, ?, ?)");
-            pstmt.setInt(1, tour.getTourId());
-            pstmt.setString(2, tour.getTourName());
-            pstmt.setString(3, tour.getClassification());
-            pstmt.setString(4, tour.getFullAddress());
-            pstmt.setString(5, tour.getPhoneNumber());
+                    "(`tourName`, `classification`, `fullAddress`, `phoneNumber`) " +
+                    "values (?, ?, ?, ?)");
+            pstmt.setString(1, tour.getTourName());
+            pstmt.setString(2, tour.getClassification());
+            pstmt.setString(3, tour.getFullAddress());
+            pstmt.setString(4, tour.getPhoneNumber());
 
             pstmt.executeUpdate();
         }
@@ -355,13 +354,12 @@ public class DBManager
         try
         {
             pstmt = conn.prepareStatement("insert into 창의프로젝트.tour " +
-                    "('lodgmentID', 'lodgmentName', 'classification', 'fullAddress', 'phoneNumber') " +
-                    "values (?, ?, ?, ?, ?)");
-            pstmt.setInt(1, lodg.getLodgmentId());
-            pstmt.setString(2, lodg.getLodgmentName());
-            pstmt.setString(3, lodg.getClassification());
-            pstmt.setString(4, lodg.getFullAddress());
-            pstmt.setString(5, lodg.getPhoneNumber());
+                    "(`lodgmentName`, `classification`, `fullAddress`, `phoneNumber`) " +
+                    "values (?, ?, ?, ?)");
+            pstmt.setString(1, lodg.getLodgmentName());
+            pstmt.setString(2, lodg.getClassification());
+            pstmt.setString(3, lodg.getFullAddress());
+            pstmt.setString(4, lodg.getPhoneNumber());
 
             pstmt.executeUpdate();
         }
@@ -391,13 +389,12 @@ public class DBManager
         try
         {
             pstmt = conn.prepareStatement("insert into 창의프로젝트.restaurant " +
-                    "('restaurantID', 'restaurantName', 'mainMenu', 'fullAddress', 'phoneNumber') " +
-                    "values (?, ?, ?, ?, ?)");
-            pstmt.setInt(1, res.getRestaurantId());
-            pstmt.setString(2, res.getRestaurantName());
-            pstmt.setString(3, res.getMenu());
-            pstmt.setString(4, res.getFullAddress());
-            pstmt.setString(5, res.getPhoneNumber());
+                    "(`restaurantID`, `restaurantName`, `mainMenu`, `fullAddress`, `phoneNumber`) " +
+                    "values (?, ?, ?, ?)");
+            pstmt.setString(1, res.getRestaurantName());
+            pstmt.setString(2, res.getMenu());
+            pstmt.setString(3, res.getFullAddress());
+            pstmt.setString(4, res.getPhoneNumber());
 
             pstmt.executeUpdate();
         }

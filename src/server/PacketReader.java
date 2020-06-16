@@ -14,7 +14,7 @@ public class PacketReader {
     public static byte[] read(byte[] packet)
     {
         boolean result = false;
-        Protocol protocol = null;
+        Protocol protocol = new Protocol();
         protocol.setPacket(packet);
 
         switch(packet[0])

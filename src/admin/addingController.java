@@ -1,5 +1,6 @@
 package admin;
 
+import communicate.Protocol;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -75,17 +76,17 @@ public class addingController
         if(tourClicked==1)
         {
             tour = makeTour();
-            AdminServerConnector.getPacketManager().insertRequest(1, tour);
+            AdminServerConnector.getPacketManager().insertRequest(Protocol.TAG_TRAVEL, tour);
         }
         if(lodgmentClicked==1)
         {
             lodgment = makeLodgmentObject();
-            AdminServerConnector.getPacketManager().insertRequest(3, lodgment);
+            AdminServerConnector.getPacketManager().insertRequest(Protocol.TAG_HOTEL, lodgment);
         }
         if(restaurantClicked==1)
         {
             restaurant = makeRestaurant();
-            AdminServerConnector.getPacketManager().insertRequest(2, restaurant);
+            AdminServerConnector.getPacketManager().insertRequest(Protocol.TAG_FOOD, restaurant);
         }
         //패킷 전송
     }

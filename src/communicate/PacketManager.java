@@ -64,9 +64,9 @@ public class PacketManager
     }
 
     // 추가 요청
-    public void insertRequest(int op, Object obj)   // 추가 대상(숙박 or 여행지 or 식당)과 해당 객체
+    public void insertRequest(byte op, Object obj)   // 추가 대상(숙박 or 여행지 or 식당)과 해당 객체
     {
-        protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_REQ, Protocol.REQ_ADD, (byte)op);
+        protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_REQ, Protocol.REQ_ADD, op);
         protocol.setBody(SerialManager.toByteArray(obj));
         isSet = true;
         packetSend();
