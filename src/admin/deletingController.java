@@ -1,5 +1,6 @@
 package admin;
 
+import communicate.Protocol;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -121,6 +122,11 @@ public class deletingController
                 AdminServerConnector.getPacketManager().searchRequest(PW_ADMIN ,TAG_HOTEL);
             }
         }
+        Protocol pt = AdminServerConnector.getPacketManager().packetRead();
+        if(AdminServerConnector.getPacketManager().packetTranslate())   //요청 성공인 경우
+        {
+            //
+        }
     }
 
     //--------------------------------------------------------------------------------------------------------------------------
@@ -132,7 +138,6 @@ public class deletingController
         {
             //선택된거 들고와서
             //서버로 삭제 요청을 보낸다
-
         }
         else if(restaurantClicked==1)   //음식점 정보 삭제시
         {
@@ -143,4 +148,21 @@ public class deletingController
         }
     }
 
+    public void alertMessage(String result, String msg) //패킷 내용에 따른 경고?창 생성
+    {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("result alert");
+        if(result.equals("성공"))
+        {
+            alert.setHeaderText("결과");
+            alert.setContentText(msg);
+        }
+        else
+        {
+            alert.setHeaderText("실패");
+            alert.setContentText("요청 처리 실패");
+        }
+        alert.showAndWait();
+
+    }
 }

@@ -1,9 +1,11 @@
 package admin;
 
+import communicate.Protocol;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -12,12 +14,12 @@ import tableClass.Restaurant;
 import tableClass.Tour;
 import java.io.IOException;
 
+import static communicate.Protocol.*;
+
 public class addingController
 {
     @FXML
     private Button addLodgmentBtn,addTourBtn,addRestrantBtn;  //숙박, 관광지, 음식점 버튼
-    @FXML
-    private Button addInsertBtn;            //정보 입력
     @FXML   //관광지 임력 fxml 파일의 textField들
     private TextField tourName, tourClassification, tourFullAddress, tourCity, tourTownShip,tourPhoneNumber;
     @FXML       //음식점 임력 fxml 파일의 textField들
@@ -73,21 +75,45 @@ public class addingController
         if(tourClicked==1)
         {
             tour = makeTour();
-            AdminServerConnector.getPacketManager().insertRequest(1, tour);
+            AdminServerConnector.getPacketManager().insertRequest(TAG_TRAVEL, tour); //요청 보냄
         }
         if(lodgmentClicked==1)
         {
             lodgment = makeLodgmentObject();
-            AdminServerConnector.getPacketManager().insertRequest(3, lodgment);
+            AdminServerConnector.getPacketManager().insertRequest(TAG_HOTEL, lodgment);
         }
         if(restaurantClicked==1)
         {
             restaurant = makeRestaurant();
-            AdminServerConnector.getPacketManager().insertRequest(2, restaurant);
+            AdminServerConnector.getPacketManager().insertRequest(TAG_FOOD, restaurant);
         }
-        //패킷 전송
+
+        AdminServerConnector.getPacketManager().packetRead(); //요청에 대한 응답을 받음
+        if(AdminServerConnector.getPacketManager().packetTranslate())   //응답이 성공이면
+        {
+            alertMessage("성공","정보 입력 성공");
+        }
+        else
+            alertMessage("실패", "정보 입력 실패");
     }
 
+    public void alertMessage(String result, String msg) //패킷 내용에 따른 경고?창 생성
+    {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("result alert");
+        if(result.equals("성공"))
+        {
+            alert.setHeaderText("결과");
+            alert.setContentText(msg);
+        }
+        else
+        {
+            alert.setHeaderText("실패");
+            alert.setContentText("요청 처리 실패");
+        }
+        alert.showAndWait();
+
+    }
     public Tour makeTour()
     {
         String name =tourName.getText();

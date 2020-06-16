@@ -7,6 +7,8 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
+import static communicate.Protocol.*;
+
 // 클라이언트가 서버로 패킷을 보내기 위한 클래스
 //TODO: 클라이언트에서 소켓 유지는 어떤식으로 할것인지 정할 필요 있음
 public class PacketManager
@@ -44,14 +46,37 @@ public class PacketManager
             }
         }
     }
+    public Protocol packetRead()
+    {
+        try
+        {
+            byte buf[] = new byte[1000000];
+            int bytesRead = reader.read(buf, 0, buf.length);
+            protocol = null;
+            protocol.setPacket(buf);     //받아온 프로토콜을 셋팅한다
 
-//    public Protocol packetRead()
-//    {
-//        if(!isSet)
-//        {
-//            reader.read()
-//        }
-//    }
+            for(int i = 0; i < 8; i++)      //작동되는지 볼라고
+            {
+                System.out.print(buf[i]);
+            }
+        }
+        catch(IOException e)
+        {
+            e.getStackTrace();
+        }
+        return protocol;
+    }
+    public boolean packetTranslate()       //성공인지 실패인지에 대한 응답을 내보낸다
+    {
+        switch(protocol.getType())
+        {
+            case TYPE_SUCCESS:
+                return true;
+            case TYPE_FAIL:
+                return false;
+        }
+        return false;
+    }
     // 검색 요청, 매개변수는 Protocol의 static 상수로 지정해주세용
     // power는 Protocol.PW_USER or ADMIN, op는 Protocol.TAG_HOTEL or FOOD or TRAVEL
     public void searchRequest(int power, int op)    // 권한과 검색 대상(숙박 or 여행지 or 식당)
