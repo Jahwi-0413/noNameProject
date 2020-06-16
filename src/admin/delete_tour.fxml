@@ -29,7 +29,7 @@
       </Pane>
       <Pane fx:id="deleteContentPane" layoutY="75.0" prefHeight="350.0" prefWidth="850.0">
          <children>
-            <TableView layoutX="25.0" layoutY="14.0" prefHeight="350.0" prefWidth="800.0" style="-fx-background-color: white;">
+            <TableView fx:id="tourTableView" layoutX="25.0" layoutY="14.0" prefHeight="350.0" prefWidth="800.0" style="-fx-background-color: white;">
               <columns>
                 <TableColumn prefWidth="121.0" style="-fx-background-color: #83dcb7;" text="관광지명" />
                 <TableColumn prefWidth="121.0" style="-fx-background-color: #83dcb7;" text="분류" />

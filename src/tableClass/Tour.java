@@ -1,5 +1,7 @@
 package tableClass;
 
+import javafx.collections.ObservableArray;
+
 import java.io.*;
 
 public class Tour implements Serializable
