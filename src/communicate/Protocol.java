@@ -156,13 +156,16 @@ public class Protocol
         setRequest(packet[2]);
         setTarget(packet[3]);
         byte[] length = new byte[4];
-        System.arraycopy(packet, 4, length, 0, 4);
-        setBodyLength(byteArrayToint(length));
 
-        if(bodyLength != 0)
+        System.arraycopy(packet, 4, length, 0, 4);
+        System.out.println();
+        setBodyLength(byteArrayToint(length));
+        System.out.println(bodyLength);
+
+        if (bodyLength != 0)
         {
             byte[] body = new byte[bodyLength];
-            System.arraycopy(packet, 8, body, 0, body.length);
+            System.arraycopy(packet, 8, body, 0, bodyLength);
             setBody(body);
         }
     }
