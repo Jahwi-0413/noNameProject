@@ -14,6 +14,8 @@ import tableClass.Tour;
 
 import java.io.IOException;
 
+import static communicate.Protocol.*;
+
 
 public class deletingController
 {
@@ -32,7 +34,7 @@ public class deletingController
     @FXML
     private TableView<Restaurant> restaurantTableView;  // 음식점 정보를 담는 테이블뷰
     @FXML
-    private TableView<Lodgment> lodgmentTableView;  //숙박 정보를 담는 테이블뷰
+    private TableView<Lodgment> lodgmentTableView;  //숙박 정보를 담는 테이블
 
 
     private Stage thisStage;
@@ -89,36 +91,36 @@ public class deletingController
     public void clickDeleteSearch()     //검색 버튼을 눌렀을 때
     {
         String keyWord = deleteTextField.getText(); //검색어를 들고온다
-        if(deleteGumiCheck.isSelected() && deleteDaeguCheck.isSelected()==false)    //구미에 대한 정보를 검색하는 경우
+        if(keyWord.equals(null)==false) //키워드를 입력한 경우
         {
-            //서버에 요청
-            //서버로부터 응답 받은걸 테이블뷰에 넣어줌
+            if(tourClicked==1)
+            {
+                AdminServerConnector.getPacketManager().searchRequest(PW_ADMIN , TAG_TRAVEL,keyWord);
+            }
+            else if(restaurantClicked==1)
+            {
+                AdminServerConnector.getPacketManager().searchRequest(PW_ADMIN ,TAG_FOOD , keyWord);
+            }
+            else if(lodgmentClicked==1)
+            {
+                AdminServerConnector.getPacketManager().searchRequest(PW_ADMIN ,TAG_HOTEL,keyWord);
+            }
         }
-        else if(deleteDaeguCheck.isSelected() && deleteGumiCheck.isSelected()==false)   //대구에 대한 정보를 검색하는 경우
+        else
         {
-            //서버에 요청
-            //서버로부터 응답 받은걸 테이블뷰에 넣어줌
+            if(tourClicked==1)
+            {
+                AdminServerConnector.getPacketManager().searchRequest(PW_ADMIN, TAG_TRAVEL);
+            }
+            else if(restaurantClicked==1)
+            {
+                AdminServerConnector.getPacketManager().searchRequest(PW_ADMIN , TAG_FOOD);
+            }
+            else if(lodgmentClicked==1)
+            {
+                AdminServerConnector.getPacketManager().searchRequest(PW_ADMIN ,TAG_HOTEL);
+            }
         }
-        else if(deleteGumiCheck.isSelected()==false && deleteDaeguCheck.isSelected()==false)        //둘다 선택 안된 경우
-        {
-            alert("둘다 선택 안함");  //경고창
-        }
-        else if(deleteGumiCheck.isSelected() && deleteDaeguCheck.isSelected())        //둘다 선택된 경우
-        {
-            alert("둘다 선택됨");
-        }
-    }
-    public void alert(String errorMsg)
-    {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("error");
-        alert.setHeaderText("경고");
-
-        if(errorMsg.equals("둘다 선택 안함"))
-            alert.setContentText("체크 박스를 선택해 주세요");
-        else if(errorMsg.equals("둘다 선택함"))
-            alert.setContentText("체크 박스를 하나만 선택해 주세요");
-        alert.showAndWait();
     }
 
     //--------------------------------------------------------------------------------------------------------------------------

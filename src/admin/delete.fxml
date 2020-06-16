@@ -20,34 +20,14 @@
                <font>
                   <Font size="20.0" />
                </font></Button>
-            <TextField fx:id="deleteTextField" layoutX="461.0" layoutY="16.0" prefHeight="40.0" prefWidth="295.0" />
+            <TextField fx:id="deleteTextField" layoutX="333.0" layoutY="15.0" prefHeight="40.0" prefWidth="421.0" />
             <Button fx:id="deleteSearchBtn" layoutX="770.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickDeleteSearch" prefHeight="40.0" style="-fx-background-color: #83dcb7; -fx-border-color: white;" text="검색" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font></Button>
-            <CheckBox fx:id="deleteGumiCheck" layoutX="325.0" layoutY="25.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="68.0" text="구미">
-               <font>
-                  <Font size="15.0" />
-               </font></CheckBox>
-            <CheckBox fx:id="deleteDaeguCheck" layoutX="393.0" layoutY="25.0" mnemonicParsing="false" text="대구">
-               <font>
-                  <Font size="15.0" />
-               </font></CheckBox>
          </children>
       </Pane>
-      <Pane fx:id="deleteContentPane" layoutY="75.0" prefHeight="350.0" prefWidth="850.0">
-         <children>
-            <TableView layoutX="25.0" layoutY="14.0" prefHeight="350.0" prefWidth="800.0" style="-fx-background-color: white;">
-              <columns>
-                <TableColumn prefWidth="75.0" style="-fx-background-color: #83dcb7;" text="C1" />
-                <TableColumn prefWidth="75.0" style="-fx-background-color: #83dcb7;" text="C2" />
-                  <TableColumn prefWidth="172.0" style="-fx-background-color: #83dcb7;" text="C3" />
-                  <TableColumn prefWidth="139.0" style="-fx-background-color: #83dcb7;" text="C4" />
-                  <TableColumn prefWidth="163.0" style="-fx-background-color: #83dcb7;" text="C5" />
-                  <TableColumn prefWidth="175.0" style="-fx-background-color: #83dcb7;" text="C6" />
-              </columns>
-            </TableView>
-         </children></Pane>
+      <Pane fx:id="deleteContentPane" layoutY="75.0" prefHeight="350.0" prefWidth="850.0" />
       <Button fx:id="deleteBtn" layoutX="391.0" layoutY="437.0" mnemonicParsing="false" onAction="#clickDelete" style="-fx-background-color: #83dcb7;" text="삭제" textFill="WHITE">
          <font>
             <Font size="20.0" />
