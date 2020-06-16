@@ -52,13 +52,8 @@ public class PacketManager
         {
             byte buf[] = new byte[1000000];
             int bytesRead = reader.read(buf, 0, buf.length);
-            protocol = null;
+            protocol = new Protocol();
             protocol.setPacket(buf);     //받아온 프로토콜을 셋팅한다
-
-            for(int i = 0; i < 8; i++)      //작동되는지 볼라고
-            {
-                System.out.print(buf[i]);
-            }
         }
         catch(IOException e)
         {

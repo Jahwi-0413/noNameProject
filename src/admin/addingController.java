@@ -75,29 +75,17 @@ public class addingController
         if(tourClicked==1)
         {
             tour = makeTour();
-<<<<<<< HEAD
             AdminServerConnector.getPacketManager().insertRequest(TAG_TRAVEL, tour); //요청 보냄
-=======
-            AdminServerConnector.getPacketManager().insertRequest(Protocol.TAG_TRAVEL, tour);
->>>>>>> 53eaab21f4fc86ef2f95367317e2de43e8d73de1
         }
         if(lodgmentClicked==1)
         {
             lodgment = makeLodgmentObject();
-<<<<<<< HEAD
             AdminServerConnector.getPacketManager().insertRequest(TAG_HOTEL, lodgment);
-=======
-            AdminServerConnector.getPacketManager().insertRequest(Protocol.TAG_HOTEL, lodgment);
->>>>>>> 53eaab21f4fc86ef2f95367317e2de43e8d73de1
         }
         if(restaurantClicked==1)
         {
             restaurant = makeRestaurant();
-<<<<<<< HEAD
             AdminServerConnector.getPacketManager().insertRequest(TAG_FOOD, restaurant);
-=======
-            AdminServerConnector.getPacketManager().insertRequest(Protocol.TAG_FOOD, restaurant);
->>>>>>> 53eaab21f4fc86ef2f95367317e2de43e8d73de1
         }
 
         AdminServerConnector.getPacketManager().packetRead(); //요청에 대한 응답을 받음
