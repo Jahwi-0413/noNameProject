@@ -38,7 +38,7 @@ public class PacketReader {
 
                                 if(!tourList.isEmpty())     // 여행지 객체 배열을 전송
                                 {
-                                    Tour[] tourArray = (Tour[]) tourList.toArray();
+                                    Tour[] tourArray = tourList.toArray(new Tour[tourList.size()]);
                                     protocol = new Protocol(Protocol.PW_USER, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
                                     protocol.setBody(SerialManager.toByteArray(tourArray));
                                 }
@@ -58,7 +58,7 @@ public class PacketReader {
 
                                 if(!resList.isEmpty())      // 식당 객체 배열을 전송
                                 {
-                                    Restaurant[] resArray = (Restaurant[]) resList.toArray();
+                                    Restaurant[] resArray = resList.toArray(new Restaurant[resList.size()]);
                                     protocol = new Protocol(Protocol.PW_USER, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
                                     protocol.setBody(SerialManager.toByteArray(resArray));
                                 }
@@ -78,7 +78,7 @@ public class PacketReader {
 
                                 if(!lodgList.isEmpty())     // 숙소 객체 배열을 전송
                                 {
-                                    Lodgment[] lodgArray = (Lodgment[]) lodgList.toArray();
+                                    Lodgment[] lodgArray = lodgList.toArray(new Lodgment[lodgList.size()]);
                                     protocol = new Protocol(Protocol.PW_USER, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
                                     protocol.setBody(SerialManager.toByteArray(lodgArray));
                                 }
@@ -109,7 +109,7 @@ public class PacketReader {
 
                                 if(!tourList.isEmpty())     // 여행지 객체 배열을 전송
                                 {
-                                    Tour[] tourArray = (Tour[]) tourList.toArray();
+                                    Tour[] tourArray = tourList.toArray(new Tour[tourList.size()]);
                                     protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
                                     protocol.setBody(SerialManager.toByteArray(tourArray));
                                 }
@@ -129,7 +129,7 @@ public class PacketReader {
 
                                 if(!resList.isEmpty())      // 식당 객체 배열을 전송
                                 {
-                                    Restaurant[] resArray = (Restaurant[]) resList.toArray();
+                                    Restaurant[] resArray = resList.toArray(new Restaurant[resList.size()]);
                                     protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
                                     protocol.setBody(SerialManager.toByteArray(resArray));
                                 }
@@ -149,7 +149,7 @@ public class PacketReader {
 
                                 if(!lodgList.isEmpty())     // 숙소 객체 배열을 전송
                                 {
-                                    Lodgment[] lodgArray = (Lodgment[]) lodgList.toArray();
+                                    Lodgment[] lodgArray = lodgList.toArray(new Lodgment[lodgList.size()]);
                                     protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
                                     protocol.setBody(SerialManager.toByteArray(lodgArray));
                                 }
