@@ -123,7 +123,7 @@ public class deletingController implements Initializable
     public void clickDeleteSearch()     //검색 버튼을 눌렀을 때
     {
         String keyWord = deleteTextField.getText(); //검색어를 들고온다
-        if(keyWord.equals("")) //키워드를 입력한 경우
+        if(!keyWord.equals("")) //키워드를 입력한 경우
         {
             if(tourClicked==1)
             {
