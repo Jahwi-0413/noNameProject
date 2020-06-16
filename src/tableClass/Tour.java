@@ -28,6 +28,13 @@ public class Tour implements Serializable {
         this.classification = classification;
         fullAddress=address;
     }
+    public Tour(int id, String name, String classification, String address, String phone)
+    {
+        tourId=id; tourName = name;
+        this.classification = classification;
+        fullAddress=address;
+        phoneNumber = phone;
+    }
 
     public int getTourId(){return tourId;}
     public String getTourName() {return tourName;}

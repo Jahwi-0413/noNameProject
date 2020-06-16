@@ -39,21 +39,21 @@ public class deletingController implements Initializable
     private Button deleteBtn;       //삭제 버튼
     @FXML
     private TextField deleteTextField;  //검색할 text field
+    //---------------------------------------------------------------------------------
     @FXML
     private TableView<Tour> tourTableView ;      //관광지 정보를 담는 테이블뷰
     @FXML
-    private TableColumn<Tour,String> tourName = new TableColumn<>("tourName");
-    @FXML
-    private TableColumn<Tour,String> tourClassification =new TableColumn<>("tourClassification");
-    @FXML
-    private TableColumn<Tour, String> tourFullAddress = new TableColumn<>("tourFullAddress");
-    @FXML
-    private TableColumn<Tour, String> tourPhoneNumber = new TableColumn<>("tourPhoneNumber");
-
+    private TableColumn<Tour,String> tourName,tourClassification,tourFullAddress,tourPhoneNumber;
+    //---------------------------------------------------------------------------------
     @FXML
     private TableView<Restaurant> restaurantTableView;  // 음식점 정보를 담는 테이블뷰
     @FXML
+    private TableColumn<Restaurant,String> restaurantName, mainMenu,restaurantFullAddress,restaurantPhoneNumber;
+    //---------------------------------------------------------------------------------
+    @FXML
     private TableView<Lodgment> lodgmentTableView;  //숙박 정보를 담는 테이블
+    @FXML
+    private TableColumn<Lodgment,String> lodgmentName, lodgmentClassification, lodgmentFullAddress,lodgmentPhoneNumber;
 
 //    private ObservableArray<Restaurant> restaurantList = (Restaurant)FXCollections.observableArrayList();
 //    private ObservableArray<Lodgment> lodgmentList = (Lodgment)FXCollections.observableArrayList();
@@ -153,17 +153,50 @@ public class deletingController implements Initializable
             Object[] objList = SerialManager.toObjectArr(pt.getBody());
             if(tourClicked==1)
             {
+                tourName.setCellValueFactory(new PropertyValueFactory<>("tourName"));
+                tourPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("tourPhoneNumber"));
+//              tourClassification.setCellValueFactory(new PropertyValueFactory<>("tourClassification"));
+//              tourFullAddress.setCellValueFactory(new PropertyValueFactory<>("tourFullAddress"));
                 Tour[] tourArray = (Tour[])objList;
                 ArrayList<Tour> list = new ArrayList();
                 for(int i = 0;i<tourArray.length; i++)
                 {
                     list.add(tourArray[i]);
-                    System.out.println(tourArray[i].getTourName());
-                    System.out.println(list.get(i).getTourName());
+//                    System.out.println(tourArray[i].getTourName());
+//                    System.out.println(list.get(i).getTourName());
                 }
                 ObservableList<Tour> arraylist = FXCollections.observableArrayList(list);
                 tourTableView.setItems(arraylist);
+            }
+            else if(restaurantClicked==1)
+            {
+                restaurantName.setCellValueFactory(new PropertyValueFactory<>("restaurantName"));
+                mainMenu.setCellValueFactory(new PropertyValueFactory<>("mainMenu"));
+                restaurantFullAddress.setCellValueFactory(new PropertyValueFactory<>("restaurantFullAddress"));
+                restaurantPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("restaurantPhoneNumber"));
+                Restaurant[] restaurantArray = (Restaurant[])objList;
+                ArrayList<Restaurant> list = new ArrayList();
+                for(int i=0;i<restaurantArray.length;i++)
+                {
+                    list.add(restaurantArray[i]);
 
+                }
+                ObservableList<Restaurant>  arraylist = FXCollections.observableArrayList(list);
+                restaurantTableView.setItems(arraylist);
+            }
+            else if(lodgmentClicked==1)
+            {
+                lodgmentName.setCellValueFactory(new PropertyValueFactory<>("lodgmentName"));
+                lodgmentClassification.setCellValueFactory(new PropertyValueFactory<>("lodgmentClassification"));
+                lodgmentFullAddress.setCellValueFactory();
+                Lodgment[] lodgArray = (Lodgment[])objList;
+                ArrayList<Lodgment> list = new ArrayList();
+                for(int i=0;i<lodgArray.length;i++)
+                {
+                    list.add(lodgArray[i]);
+                }
+                ObservableList<Lodgment> arraylist = FXCollections.observableArrayList(list);
+                lodgmentTableView.setItems(arraylist);
             }
         }
         else        //요청 실패인 경우

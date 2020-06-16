@@ -24,7 +24,7 @@ public class tableTest extends Application
     @FXML
     private TableColumn<Tour,String> tourName;
     @FXML
-    private TableColumn<?,?> tourPhoneNumber;
+    private TableColumn<Tour,String> tourPhoneNumber;
 
 
 
@@ -52,17 +52,21 @@ public class tableTest extends Application
     public void clickDeleteSearch()
     {
 
-        tourName.setCellValueFactory(new PropertyValueFactory<>("tourName"));
-        tourPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("tourPhoneNumber"));
+        tourName.setCellValueFactory(new PropertyValueFactory<Tour,String>("tourName"));
+        tourPhoneNumber.setCellValueFactory(new PropertyValueFactory<Tour,String>("tourPhoneNumber"));
 //        tourFullAddress.setCellValueFactory(new PropertyValueFactory<>("tourFullAddress"));
 //        tourClassification.setCellValueFactory(new PropertyValueFactory<>("tourClassification"));
 
         ArrayList<Tour> arraylist = new ArrayList<Tour>();
         for(int i=0;i<20;i++)
         {
-            arraylist.add(new Tour(i,"test","test","test"));
+            arraylist.add(new Tour(i,"test","test","1234", "1234"));
         }
         ObservableList<Tour> list = FXCollections.observableArrayList(arraylist);
+//        for(int i=0;i<20; i++)
+//        {
+//            tourTableView.getItems().add(arraylist.get(i));
+//        }
         tourTableView.setItems(list);
     }
 

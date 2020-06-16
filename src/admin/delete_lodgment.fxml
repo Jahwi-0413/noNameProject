@@ -31,10 +31,10 @@
          <children>
             <TableView fx:id="lodgmentTableView" layoutX="25.0" layoutY="14.0" prefHeight="350.0" prefWidth="800.0" style="-fx-background-color: white;">
               <columns>
-                <TableColumn prefWidth="121.0" text="숙박 업소명" />
-                <TableColumn prefWidth="121.0" text="분류" />
-                  <TableColumn prefWidth="353.0" text="소재지" />
-                  <TableColumn prefWidth="204.0" text="전화번호" />
+                <TableColumn id="lodgmentName" prefWidth="121.0" text="숙박 업소명" />
+                <TableColumn id="lodgmentClassification" prefWidth="121.0" text="분류" />
+                  <TableColumn id="lodgmentFullAddress" prefWidth="353.0" text="소재지" />
+                  <TableColumn id="lodgmentPhoneNumber" prefWidth="204.0" text="전화번호" />
               </columns>
             </TableView>
          </children></Pane>
