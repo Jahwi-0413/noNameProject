@@ -22,7 +22,7 @@ public class DBManager
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://" + "116.127.156.46" + ":3306" + "/창의프로젝트" + "?characterEncoding=UTF-8&serverTimezone=UTC";
+            String url = "jdbc:mysql://" + "116.127.156.46"/*"127.0.0.1"*/ + ":3306" + "/창의프로젝트" + "?characterEncoding=UTF-8&serverTimezone=UTC";
             conn = DriverManager.getConnection(url, ID, PASSWORD);
         }
         catch(Exception e)
