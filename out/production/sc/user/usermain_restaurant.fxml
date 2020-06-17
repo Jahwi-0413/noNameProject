@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="850.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.UserMainController">
+   <children>
+      <Pane prefHeight="70.0" prefWidth="850.0" style="-fx-background-color: skyblue;">
+         <children>
+            <Button fx:id="tourBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickTour" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: skyblue; -fx-border-color: white;" text="관광지" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="restrantBtn" layoutX="119.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickRestrant" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: skyblue; -fx-border-color: white;" text="음식점" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="lodgmentBtn" layoutX="222.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickLodg" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: skyblue; -fx-border-color: white;" text="숙박" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <TextField fx:id="textField" layoutX="328.0" layoutY="16.0" prefHeight="40.0" prefWidth="428.0" />
+            <Button fx:id="SearchBtn" layoutX="770.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickSearch" prefHeight="40.0" style="-fx-background-color: skyblue; -fx-border-color: white;" text="검색" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+         </children>
+      </Pane>
+      <Pane fx:id="deleteContentPane" layoutY="75.0" prefHeight="350.0" prefWidth="850.0">
+         <children>
+            <TableView fx:id="restaurantTableView" layoutX="25.0" layoutY="14.0" prefHeight="350.0" prefWidth="800.0" style="-fx-background-color: white;">
+              <columns>
+                <TableColumn fx:id="restaurantName" prefWidth="121.0" text="가게 이름" />
+                <TableColumn fx:id="mainMenu" prefWidth="121.0" text="주메뉴" />
+                  <TableColumn fx:id="restaurantFullAddress" prefWidth="353.0" text="소재지" />
+                  <TableColumn fx:id="restaurantPhoneNumber" prefWidth="204.0" text="전화번호" />
+              </columns>
+            </TableView>
+         </children></Pane>
+   </children>
+</AnchorPane>
