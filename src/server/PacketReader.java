@@ -211,7 +211,7 @@ public class PacketReader {
                                 temp = protocol.getBody();
                                 res = (Restaurant) SerialManager.toObject(temp);
 
-                                result = db.deleteTour(res.getRestaurantId());
+                                result = db.deleteRestaurant(res.getRestaurantId());
 
                                 if(result) protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
                                 else protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);
@@ -221,7 +221,7 @@ public class PacketReader {
                                 temp = protocol.getBody();
                                 lodg = (Lodgment) SerialManager.toObject(temp);
 
-                                result = db.deleteTour(lodg.getLodgmentId());
+                                result = db.deleteLodgment(lodg.getLodgmentId());
 
                                 if(result) protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_SUCCESS, Protocol.PT_NULL, Protocol.PT_NULL);
                                 else protocol = new Protocol(Protocol.PW_ADMIN, Protocol.TYPE_FAIL, Protocol.PT_NULL, Protocol.PT_NULL);

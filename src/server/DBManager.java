@@ -22,7 +22,7 @@ public class DBManager
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://" + "116.127.156.46"/*"127.0.0.1"*/ + ":3306" + "/창의프로젝트" + "?characterEncoding=UTF-8&serverTimezone=UTC";
+            String url = "jdbc:mysql://" + /*"116.127.156.46"*/"127.0.0.1" + ":3306" + "/창의프로젝트" + "?characterEncoding=UTF-8&serverTimezone=UTC";
             conn = DriverManager.getConnection(url, ID, PASSWORD);
         }
         catch(Exception e)
@@ -353,7 +353,7 @@ public class DBManager
 
         try
         {
-            pstmt = conn.prepareStatement("insert into 창의프로젝트.tour " +
+            pstmt = conn.prepareStatement("insert into 창의프로젝트.lodgment " +
                     "(`lodgmentName`, `classification`, `fullAddress`, `phoneNumber`) " +
                     "values (?, ?, ?, ?)");
             pstmt.setString(1, lodg.getLodgmentName());
@@ -389,7 +389,7 @@ public class DBManager
         try
         {
             pstmt = conn.prepareStatement("insert into 창의프로젝트.restaurant " +
-                    "(`restaurantID`, `restaurantName`, `mainMenu`, `fullAddress`, `phoneNumber`) " +
+                    "(`restaurantName`, `mainMenu`, `fullAddress`, `phoneNumber`) " +
                     "values (?, ?, ?, ?)");
             pstmt.setString(1, res.getRestaurantName());
             pstmt.setString(2, res.getMenu());
